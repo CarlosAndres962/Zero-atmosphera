@@ -53,7 +53,7 @@ public class Aerocars extends Vehiculos{
     public String Transmision(double elije){
         elije = distancia*9.461*2.718+12;      
       if(elije <1){
-          return("economico");
+          return("Economico");
       }
       else{
           return("Estelar");
