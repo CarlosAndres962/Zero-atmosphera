@@ -59,4 +59,14 @@ public class Aerocars extends Vehiculos{
           return("Estelar");
       }
     }
+    @Override
+    public String detalles(){
+        return "Detalles Aerocar:"+
+                "\nMatricula: "+matricula+
+                "\nTipo: "+tipo+
+                "\nLas medidas del aerocar es: "+
+                "\nLargo: "+largo+
+                "\nAncho: "+ancho+
+                "\n----------------";
+    }
 }
