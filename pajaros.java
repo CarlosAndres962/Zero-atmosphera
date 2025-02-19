@@ -8,6 +8,7 @@ package zeroatmosphere;
  *
  * @author sarag
  */
+//comentario de prueba por ivan diaz//
 public class pajaros extends mascotas{
     
     public String especie;
