@@ -7,6 +7,7 @@ public class Nomun extends Alienigena {
 public void setAutotraslacion(double autotraslacion ){
    this.autotraslacion=autotraslacion;
 }
+
 public Double gerAutotraslacion(){
    return autotraslacion;
 }
