@@ -52,5 +52,6 @@ public abstract class Vehiculos {
     public void setAncho(double ancho) {
         this.ancho = ancho;
     }
-    
+    public abstract String detalles();
+
 }
