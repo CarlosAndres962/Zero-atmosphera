@@ -4,6 +4,13 @@ public class Nomun extends Alienigena {
 
     double autotraslacion;
 
+public void setAutotraslacion(double autotraslacion ){
+   this.autotraslacion=autotraslacion;
+}
+public Double gerAutotraslacion(){
+   return autotraslacion;
+}
+
 
 public void(double autotraslacion,String tipo){
       super(tipo)

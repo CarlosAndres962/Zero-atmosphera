@@ -8,8 +8,13 @@ double grdInvisibilidad;
       this.grdInvisibilidad= grdInvisibilidad;    
  }
 
-public void setgrdInvisibilidad(double );
-kmjknjkn
+public void setGrdInvisibilidad(double grdInvisibilidad ){
+   this.grdInvisibilidad=grdInvisibilidad;
+}
+public Double getgrdInvisibilidad(){
+   return grdInvisibilidad;
+}
+
 
  @Override
  public int Duermen{
