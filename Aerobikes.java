@@ -43,6 +43,16 @@ public class Aerobikes extends Vehiculos{
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-   
+   @Override
+    public String detalles(){
+        return "Detalles Aerobike:"+
+                "\nModelo: "+modelo+
+                "\nColor: "+color+
+                "\nTipo: "+tipo+
+                "\nLas medidas del aerocar es: "+
+                "\nLargo: "+largo+
+                "\nAncho: "+ancho+
+                "\n----------------";
+    }
     
 }
