@@ -16,7 +16,7 @@ public class PropietarioMascota extends Mascotas {
 
     @Override
     public String Comunican() {
-        return "esta hablando";
+        return "Se esta comunicando";
     }
 
     @Override

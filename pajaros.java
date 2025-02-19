@@ -8,7 +8,7 @@ package zeroatmosphere;
  *
  * @author sarag
  */
-//comentario de prueba por ivan diaz//
+//comentario de prueba por ivan diaz
 public class pajaros extends mascotas{
     
     public String especie;
@@ -20,17 +20,17 @@ public class pajaros extends mascotas{
 
     @Override
     public String Comunican() {
-      return "cantan";
+      return "Esta cantando";
     }
 
     @Override
     public int Duermen() {
-      return 8;
+      return "Esta durmiendo";
     }
 
     @Override
     public String Comen() {
-        return "semillas";
+        return "Esta comiendo semillas";
     }
     
 }
