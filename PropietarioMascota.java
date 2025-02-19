@@ -8,7 +8,7 @@ package zeroatmosphere;
  *
  * @author sarag
  */
-public class PropietarioMascota extends mascotas {
+public class PropietarioMascota extends Mascotas {
 
     public PropietarioMascota(String nombre, String propietario, String codigo, int edad) {
         super(nombre, propietario, codigo, edad);
@@ -16,17 +16,17 @@ public class PropietarioMascota extends mascotas {
 
     @Override
     public String Comunican() {
-        return "hablan";
+        return "esta hablando";
     }
 
     @Override
-    public int Duermen() {
-        return 8;
+    public String Duermen() {
+        return "esta durmiendo";
     }
 
     @Override
     public String Comen() {
-        return "ingieren";
+        return "esta comiendo";
     }
     
 }
