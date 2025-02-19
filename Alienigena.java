@@ -6,7 +6,7 @@ package proyecto.macota;
 
 /**
  *
- * @author Administrador
+ * @author Leydi
  */
 public abstract class Alienigena {
     String tipo;
@@ -15,9 +15,9 @@ public abstract class Alienigena {
         this.tipo = tipo;
     }
     
-    public abstract void Duermen();
-    public abstract void Comen();
-    public abstract void Atacan();
+    public abstract int Duermen();
+    public abstract String Comen();
+    public abstract String Atacan();
     
     
     
