@@ -9,5 +9,7 @@ package com.mycompany.zeroatmosphera;
  * @author mendo
  */
 public interface Turbojets {
-    
+    public void numTurboJets();
+    public void potenciaTurbojets();
+
 }
