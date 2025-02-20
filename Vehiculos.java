@@ -8,17 +8,15 @@ package com.mycompany.zeroatmosphera;
  *
  * @author mendo
  */
-public abstract class Vehiculos {
+public abstract class Vehiculos{
     protected int numper;
     protected double velocidad;
-    protected double largo;
-    protected double ancho;
+    protected int nturbo;
     
-    public Vehiculos(int numper,double velocidad,double largo,double ancho){
+    public Vehiculos(int numper,double velocidad,int nturbo){
         this.numper=numper;
         this.velocidad=velocidad;
-        this.largo=largo;
-        this.ancho=ancho;
+        this.nturbo=nturbo;
     }
 
     public int getNumper() {
@@ -29,12 +27,8 @@ public abstract class Vehiculos {
         return velocidad;
     }
 
-    public double getLargo() {
-        return largo;
-    }
-
-    public double getAncho() {
-        return ancho;
+    public int getNturbo(){
+        return nturbo;
     }
 
     public void setNumper(int numper) {
@@ -45,13 +39,9 @@ public abstract class Vehiculos {
         this.velocidad = velocidad;
     }
 
-    public void setLargo(double largo) {
-        this.largo = largo;
-    }
-
-    public void setAncho(double ancho) {
-        this.ancho = ancho;
+    public void setNturbo(){
+        this.nturbo=nturbo;
     }
     public abstract String detalles();
-
+    
 }
