@@ -11,14 +11,13 @@ package com.mycompany.zeroatmosphera;
 public class Aerocars extends Vehiculos{
     private final double precio=12;
     private double distancia;
-    private String matricula;
+    private String codigo;
     private String tipo;
     private ResponsableVehiculo nombre;
 
-    public Aerocars(double distancia, String matricula, String tipo, int numper, double velocidad, double largo, double ancho) {
+    public Aerocars(double distancia, String tipo, int numper, double velocidad, double largo, double ancho) {
         super(numper, velocidad, largo, ancho);
         this.distancia = distancia;
-        this.matricula = matricula;
         this.tipo = tipo;
     }
 
@@ -30,12 +29,12 @@ public class Aerocars extends Vehiculos{
         this.distancia = distancia;
     }
 
-    public String getMatricula() {
-        return matricula;
+    public String getCodigo() {
+        return codigo;
     }
 
     public void setMatricula() {
-        this.matricula = matricula;
+        this.codigo = codigo;
     }
 
     public String getTipo() {
@@ -45,24 +44,24 @@ public class Aerocars extends Vehiculos{
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    public String generaCodigo(){
+        int num=0;
+        return "car-"+String.format("%04d"+num);
+    }
     
     public double calculaCarburante(){
         double raiz= Math.sqrt(distancia);
         return raiz*precio;
     }
-    public String Transmision(double elije){
-        elije = distancia*9.461*2.718+12;      
-      if(elije <1){
-          return("Economico");
-      }
-      else{
-          return("Estelar");
-      }
+    public String Transmicion(){
+        if (distancia<1) {
+            return "Economico";
+        }else{return "Estelar";}
     }
     @Override
     public String detalles(){
         return "Detalles Aerocar:"+
-                "\nMatricula: "+matricula+
+                "\nMatricula: "+generaCodigo()+
                 "\nTipo: "+tipo+
                 "\nLas medidas del aerocar es: "+
                 "\nLargo: "+largo+
