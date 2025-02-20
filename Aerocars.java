@@ -61,7 +61,7 @@ public class Aerocars extends Vehiculos{
     @Override
     public String detalles(){
         return "Detalles Aerocar:"+
-                "\nMatricula: "+generaCodigo()+
+                "\nCodigo: "+generaCodigo()+
                 "\nTipo: "+tipo+
                 "\nLas medidas del aerocar es: "+
                 "\nLargo: "+largo+
