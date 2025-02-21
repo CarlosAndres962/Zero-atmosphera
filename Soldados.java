@@ -9,7 +9,7 @@ package zeroatmosf;
  * @author ivand
  */
 public class Soldados extends Tripulacion {
-
+    private static int ncod=0;
     public int graduacion;
 
     public Soldados() {
@@ -58,6 +58,9 @@ public class Soldados extends Tripulacion {
     public void setGraduacion(int graduacion) {
         this.graduacion = graduacion;
     }
-    
+
+    public String generaCodigo(){
+        return "sol-"+String.format("%04d"+ncod++);
+    }
 
 }
