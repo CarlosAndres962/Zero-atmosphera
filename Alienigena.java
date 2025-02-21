@@ -9,6 +9,7 @@ package proyecto.macota;
  * @author Leydi
  */
 public abstract class Alienigena {
+    private static int ncod=0;
     String tipo;
 
     public Alienigena(String tipo) {
@@ -19,6 +20,8 @@ public abstract class Alienigena {
     public abstract String Comen();
     public abstract String Atacan();
     
-    
+    public String generaCodigo(){
+        return "car-"+String.format("%04d"+ncod++);
+    }
     
 }
