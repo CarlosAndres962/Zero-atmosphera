@@ -1,26 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.zeroatmosphera;
 
-/**
- *
- * @author mendo
- */
+
 public class Aerocars extends Vehiculos implements Turbojets{
+    //atributos
     private final double precio=12;
     private double distancia;
     private String codigo;
     private ResponsableVehiculo responsable;
-
+    //Constructores
     public Aerocars(double distancia, String tipo,ResponsableVehiculo responsable, int numper, double velocidad, int nturbo) {
         super(numper, velocidad, nturbo);
         this.distancia = distancia;
         this.codigo=codigo;
         this.responsable=responsable;
     }
-
+    //Metodos
     public double getDistancia() {
         return distancia;
     }
