@@ -11,16 +11,17 @@ public abstract class Nave {
     protected int nuMotores;
     protected String laboratorio;
     protected int tunCiclo;
-
+    protected int capsIvernacion;
     public Nave() {
     }
 
-    public Nave(int nruedas, double potencia, int nuMotores, String laboratorio, int tunCiclo) {
+    public Nave(int nruedas, double potencia, int nuMotores, String laboratorio, int tunCiclo, int capsIvernacion) {
         this.nruedas = nruedas;
         this.potencia = potencia;
         this.nuMotores = nuMotores;
         this.laboratorio = laboratorio;
         this.tunCiclo = tunCiclo;
+        this.capsIvernacion = capsIvernacion;
     }
 
     public int getNruedas() {
@@ -62,10 +63,14 @@ public abstract class Nave {
     public void setTunCiclo(int tunCiclo) {
         this.tunCiclo = tunCiclo;
     }
-
+    public int getCapsIvernacion(){
+        return capsIvernacion;
+    }
+    public void setCapsIvernacion(int CapsIvernacion){
+        
     @Override
     public String toString() {
-        return "Nave" + "nruedas:" + nruedas + ", potencia: " + potencia + ", nuMotores:" + nuMotores + ", laboratorio:" + laboratorio + ", tunCiclo:" + tunCiclo;
+        return "Nave" + "nruedas:" + nruedas + ", potencia: " + potencia + ", nuMotores:" + nuMotores + ", laboratorio:" + laboratorio + ", tunCiclo:" + tunCiclo + ", Capsulas de ivernacion:" + capsIvernacion;
     }
 
 }
