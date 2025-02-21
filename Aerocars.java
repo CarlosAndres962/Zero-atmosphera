@@ -4,6 +4,7 @@ package com.mycompany.zeroatmosphera;
 
 public class Aerocars extends Vehiculos implements Turbojets{
     //atributos
+    private static int ncod=0;
     private final double precio=12;
     private double distancia;
     private String codigo;
@@ -41,8 +42,7 @@ public class Aerocars extends Vehiculos implements Turbojets{
     }
     
     public String generaCodigo(){
-        int num=0;
-        return "car-"+String.format("%04d"+num);
+        return "car-"+String.format("%04d"+ncod++);
     }
     
     public double calculaCarburante(){
