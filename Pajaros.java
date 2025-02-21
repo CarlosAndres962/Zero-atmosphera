@@ -10,6 +10,9 @@ package zeroatmosphere;
  */
 public class Pajaros extends Mascotas{
     
+    public Pajaros(String nombre, String codigo) {
+        super(nombre, codigo);
+    }
     public String especie;
 
     public void setEspecie(String especie) {
@@ -19,11 +22,7 @@ public class Pajaros extends Mascotas{
     public String getEspecie() {
         return especie;
     }
-    
-    public Pajaros(String nombre, String propietario, String codigo, int edad, String especie) {
-        super( nombre, propietario, codigo, edad);
-        this.especie=especie;
-    }
+
 
     @Override
     public String Comunican() {
