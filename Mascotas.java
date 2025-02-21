@@ -16,6 +16,14 @@ public abstract class Mascotas extends Tripulacion {
     public String codigo;
     public int edad;
 
+    public Soldados(int graduacion, String nombre, char sexo, String codigo) {
+        super(nombre, sexo, codigo);
+        this.nombre = nombre;
+        this.propietario = propietario;
+        this.codigo = codigo;
+        this.edad = edad;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -49,12 +57,6 @@ public abstract class Mascotas extends Tripulacion {
     }
 
     //Constructor
-    public Mascotas( String nombre, String propietario, String codigo, int edad) {
-        this.nombre = nombre;
-        this.propietario = propietario;
-        this.codigo = codigo;
-        this.edad = edad;
-    }
     
     public abstract String Comunican();
     
