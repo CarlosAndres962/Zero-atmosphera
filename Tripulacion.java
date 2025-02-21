@@ -1,20 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package zeroatmosf;
 
-/**
- *
- * @author ivand
- */
+
 public abstract class Tripulacion {
-    
+    //Atributos
     protected String nombre;
     protected char sexo;
     protected String codigo;
     
-
+    //Construtores
     public Tripulacion() {
     }
 
@@ -34,7 +28,7 @@ public abstract class Tripulacion {
         this.sexo = sexo;
         this.codigo = codigo;
     }
-
+    //Metodos
     public String getNombre() {
         return nombre;
     }
