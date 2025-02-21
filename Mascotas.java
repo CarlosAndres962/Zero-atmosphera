@@ -11,6 +11,7 @@ package zeroatmosphere;
 public abstract class Mascotas extends Tripulacion {
     
     //Atributos
+    private static int ncod=0;
     public String nombre;
     public String propietario;
     public String codigo;
@@ -65,8 +66,7 @@ public abstract class Mascotas extends Tripulacion {
     public abstract String Comen();
     
     public String generaCodigo(){
-        int num=0;
-        return "mas-"+String.format("%04d"+num);
+    return "mas-"+String.format("%04d"+ncod++);
     }
 
 }
