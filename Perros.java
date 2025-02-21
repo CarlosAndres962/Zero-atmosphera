@@ -27,17 +27,17 @@ public class Perros extends Mascotas {
 
     @Override
     public String Comunican() {
-         return "estan ladrando";
+         return "esta ladrando";
     }
 
     @Override
     public String Duermen() {
-        return "estan durmiendo";
+        return "esta durmiendo";
     }
 
     @Override
     public String Comen() {
-        return "estan comiendo pienso";
+        return "esta comiendo pienso";
     }
     
 }
