@@ -1,25 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.zeroatmosphera;
 
-/**
- *
- * @author mendo
- */
+//atributos
 public class Aerobikes extends Vehiculos implements Turbojets{
     private String color;
     private String modelo;
     private String tipo;
-
+//constructores
     public Aerobikes(String color, String modelo, String tipo, int numper, double velocidad, int nturbo) {
         super(numper, velocidad, nturbo);
         this.color = color;
         this.modelo = modelo;
         this.tipo = tipo;
     }
-
+//metodos
     public String getColor() {
         return color;
     }
@@ -57,6 +51,10 @@ public class Aerobikes extends Vehiculos implements Turbojets{
                 "\nColor: "+color+
                 "\nTipo: "+tipo+
                 "\nNumero de turbojets: "+nturbo+
+                "\nVelocidad: "+velocidad+
+                "\nLargo: "+largo+
+                "\nAncho: "+ancho+
+                "\nNumERO de personas: "+numper+
                 "\n----------------";
     }
 }
