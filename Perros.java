@@ -11,18 +11,17 @@ package zeroatmosphere;
 public class Perros extends Mascotas {
     
     public String raza;
-
+    
+   public Perros(String nombre, String codigo, String raza) {
+        super(nombre, codigo);
+        this.raza = raza;
+    }
     public void setRaza(String raza) {
         this.raza = raza;
     }
 
     public String getRaza() {
         return raza;
-    }
-    
-    public Perros(String nombre, String propietario, String codigo, int edad, String raza) {
-        super(nombre, propietario, codigo,edad);
-        this.raza=raza;
     }
 
     @Override
@@ -38,6 +37,9 @@ public class Perros extends Mascotas {
     @Override
     public String Comen() {
         return "esta comiendo pienso";
+    }
+    public String generaCodigo() {
+        return null;
     }
     
 }
