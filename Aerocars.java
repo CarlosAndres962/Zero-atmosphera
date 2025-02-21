@@ -56,7 +56,7 @@ public class Aerocars extends Vehiculos implements Turbojets{
     }
     @Override
     public void maxTurboJets(){
-        if (nturbo>4) {
+        if (nturbo>2) {
             System.out.println("Los aerobikes no pueden tener mas de dos turbojets");
         }
     }
