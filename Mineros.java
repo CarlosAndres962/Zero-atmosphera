@@ -9,7 +9,7 @@ package zeroatmosf;
  * @author ivand
  */
 public class Mineros extends Tripulacion {
-
+    private static int ncod;
     public int edad;
 
     public Mineros(int edad, String nombre, char sexo, String codigo) {
@@ -55,7 +55,9 @@ public class Mineros extends Tripulacion {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-    
+    public String generaCodigo(){
+        return "min-"+String.format("%04d"+ncod++);
+    }
 
   
     
