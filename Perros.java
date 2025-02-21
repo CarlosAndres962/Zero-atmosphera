@@ -38,8 +38,5 @@ public class Perros extends Mascotas {
     public String Comen() {
         return "esta comiendo pienso";
     }
-    public String generaCodigo() {
-        return null;
-    }
     
 }
