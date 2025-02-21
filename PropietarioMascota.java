@@ -10,8 +10,8 @@ package zeroatmosphere;
  */
 public class PropietarioMascota extends Mascotas {
 
-    public PropietarioMascota(String nombre, String propietario, String codigo, int edad) {
-        super(nombre, propietario, codigo, edad);
+    public PropietarioMascota(String nombre, String codigo) {
+        super(nombre, codigo);
     }
 
     @Override
@@ -27,6 +27,10 @@ public class PropietarioMascota extends Mascotas {
     @Override
     public String Comen() {
         return "esta comiendo";
+    }
+     public String generaCodigo() {
+        
+        return null;
     }
     
 }
