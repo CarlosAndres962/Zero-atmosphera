@@ -64,16 +64,9 @@ public abstract class Mascotas extends Tripulacion {
     
     public abstract String Comen();
     
-    public boolean codigo(String codigo){
-        if (codigo.length()!=7)
-            return false;
-        for (int i=0; i<4; i++){
-            char c = (char) i;
-            if (c<'a' || c>'z')
-                return true;
-            
-        }
-        return true;
+    public String generaCodigo(){
+        int num=0;
+        return "mas-"+String.format("%04d"+num);
     }
 
 }
