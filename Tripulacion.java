@@ -53,7 +53,7 @@ public abstract class Tripulacion {
         this.codigo = codigo;
     }
     
-    
+    public abstract String generaCodigo();
     
     
 }
