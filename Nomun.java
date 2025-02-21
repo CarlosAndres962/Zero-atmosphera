@@ -19,7 +19,7 @@ public void(double autotraslacion,String tipo){
 }
      @Override
  public int Duermen{
-    retunr 15;
+    retunr "Duermen alrededor de 15 horas";
  }
 
  @Override
