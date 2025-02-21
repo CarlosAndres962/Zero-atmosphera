@@ -8,7 +8,7 @@ package zeroatmosphere;
  *
  * @author sarag
  */
-public abstract class Mascotas {
+public abstract class Mascotas extends Tripulacion {
     
     //Atributos
     public String nombre;
