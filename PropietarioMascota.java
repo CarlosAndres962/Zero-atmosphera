@@ -28,9 +28,5 @@ public class PropietarioMascota extends Mascotas {
     public String Comen() {
         return "esta comiendo";
     }
-     public String generaCodigo() {
-        
-        return null;
-    }
     
 }
