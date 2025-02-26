@@ -21,7 +21,7 @@ public abstract class Alienigena {
     public abstract String Atacan();
     
     public String generaCodigo(){
-        return "car-"+String.format("%04d"+ncod++);
+        return "ali-"+String.format("%04d"+ncod++);
     }
     
 }
