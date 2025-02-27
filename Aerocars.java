@@ -49,7 +49,7 @@ public class Aerocars extends Vehiculos implements Turbojets{
         double raiz= Math.sqrt(distancia);
         return raiz*precio;
     }
-    public String transmicion(){
+    public String Transmicion(){
         if (distancia<1) {
             return "Economico";
         }else{return "Estelar";}
@@ -60,15 +60,20 @@ public class Aerocars extends Vehiculos implements Turbojets{
             System.out.println("Los aerocars no pueden tener mas de dos turbojets");
         }
     }
-    @Override
-    public String detalles(){
-        return "Detalles Aerocar:"+
-                "\nResponsable: "+responsable+
-                "\nCodigo: "+generaCodigo()+
-                "\nDistancia a recorrer:"+distancia+
-                "\nGasto de Carburante: "+calculaCarburante()+
-                "\nTransmision: "+transmicion()+
-                "\nNumero de turbojets: "+nturbo+
-                "\n-----------------------";
+  @Override
+    public String detalle() {
+        String resumen;
+        resumen="Detalles comunes.";
+        resumen="-----------------------";        
+        resumen="Velocidad :"+velocidad;
+        resumen="Numero de ocupantes :"+numeroper;
+        resumen="Detalles propios.";
+        resumen="------------------------";
+        resumen="Tipo: "+tipo;
+        resumen="Codigo: "+generaCodigo();
+        resumen="distancia: "+distancia;
+        resumen="Responsable del vehiculo: "+nombre;
+        resumen="Transmisión: "+Transmision();
+        return resumen;
     }
 }
