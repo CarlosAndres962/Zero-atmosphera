@@ -15,7 +15,7 @@ public abstract class Nave {
     public Nave() {
     }
 
-    public Nave(int nruedas, double potencia, int nuMotores, String laboratorio, int tunCiclo, int capsIvernacion) {
+    public Nave(int nruedas, double potencia, int nuMotores, String laboratorio, int tunCiclo, int capsHibernacion) {
         this.nruedas = nruedas;
         this.potencia = potencia;
         this.nuMotores = nuMotores;
@@ -63,10 +63,10 @@ public abstract class Nave {
     public void setTunCiclo(int tunCiclo) {
         this.tunCiclo = tunCiclo;
     }
-    public int getCapsIvernacion(){
+    public int getCapsHibernacion(){
         return capsHibernacion;
     }
-    public void setCapsIHibernacion(int CapsHibernacion){
+    public void setCapsHibernacion(int CapsHibernacion){
         this.capsHibernacion = capsHibernacion;
     }
    
