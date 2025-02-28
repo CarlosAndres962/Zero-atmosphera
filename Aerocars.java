@@ -42,7 +42,7 @@ public class Aerocars extends Vehiculos implements Turbojets{
     }
     
     public String generaCodigo(){
-        return "car-"+String.format("%04d"+ncod++);
+        return "car-"+String.format("%04d",ncod++);
     }
     
     public double calculaCarburante(){
