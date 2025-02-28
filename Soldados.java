@@ -60,7 +60,7 @@ public class Soldados extends Tripulacion {
     }
 
     public String generaCodigo(){
-        return "sol-"+String.format("%04d"+ncod++);
+        return "sol-"+String.format("%04d",ncod++);
     }
 
 }
