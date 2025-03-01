@@ -1,7 +1,7 @@
-package beta;
+package zeroatmospher;
 
 
-public class Nomun extends alienigena {
+public class Nomun extends Alienigena {
 // Atriutos
     private double autotraslacion;  
  //constructor   
@@ -18,15 +18,18 @@ public class Nomun extends alienigena {
     public void setAutotraslacion(double autotraslacion) {
         this.autotraslacion = autotraslacion;
     }
-      @Override
+    public int randomCome(){
+        int c = (int) (Math.random() * 2);
+        return c;
+    }
+    @Override
     public int Duermen() {
         return 15;
     }
 
     @Override
     public String Comen() {
-        int numeroAleatorio = (int) (Math.random() * 2); // Genera 0 o 1
-        if (numeroAleatorio == 0) {
+        if (randomCome() == 0) {
             return "El alienígena está comiendo";
         } else {
             return "El alienígena no está comiendo";
@@ -36,12 +39,14 @@ public class Nomun extends alienigena {
     @Override
     public String Atacan() {
         int numeroAleatorio = (int) (Math.random() * 2); // Genera 0 o 1
-        if (numeroAleatorio == 0) {
+        if (randomCome()!=0) {
+            if (numeroAleatorio == 0) {
             return "El alienígena está atacando";
-        } else {
-            return "El alienígena no está atacando";
+            }
         }
-    }
+        return "El alienígena no está atacando";
+        }
+    
     
      @Override
     public String toString() {
