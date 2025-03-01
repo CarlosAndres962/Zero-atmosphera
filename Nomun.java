@@ -25,12 +25,22 @@ public class Nomun extends alienigena {
 
     @Override
     public String Comen() {
-        return (Math.random() < 0.5) ? "El alienígena está comiendo" : "El alienígena no está comiendo";
+        int numeroAleatorio = (int) (Math.random() * 2); // Genera 0 o 1
+        if (numeroAleatorio == 0) {
+            return "El alienígena está comiendo";
+        } else {
+            return "El alienígena no está comiendo";
+        }
     }
 
     @Override
     public String Atacan() {
-        return (Math.random() < 0.5) ? "El alienígena está atacando" : "El alienígena no está atacando";
+        int numeroAleatorio = (int) (Math.random() * 2); // Genera 0 o 1
+        if (numeroAleatorio == 0) {
+            return "El alienígena está atacando";
+        } else {
+            return "El alienígena no está atacando";
+        }
     }
     
      @Override
