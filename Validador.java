@@ -21,16 +21,19 @@ public class Validador {
         try {
             int num = Integer.parseInt(numero);
             if (num < 0) {
-                throw new Excepciones("El número de alienígenas no puede ser negativo.");
+                throw new Excepciones("Error: El número de alienígenas no puede ser negativo.");
             }
-            System.out.println("Número válido: " + num);
         } catch (NumberFormatException e) {
             throw new Excepciones("Error: La entrada no es un número entero válido.");
         }
     }
-    public void validaChar(char confirmacion) throws Excepciones{
-        if (confirmacion!='s' || confirmacion!='n') {
-            throw new Excepciones("Error: La entrada no es 's' o 'n' válido.");
+    public void validaChar(String confirmacion) throws Excepciones{
+        if (confirmacion.length()>1 || confirmacion.length()==0) {
+            throw new Excepciones("Error: La entrada debe contener un digito.");
+        }
+        char caracter=confirmacion.charAt(0);
+        if (caracter!='s' || caracter!='n') {
+            throw new Excepciones("Error: La entrada no es válido solo 's' o 'n'.");
         }
     } 
 }
