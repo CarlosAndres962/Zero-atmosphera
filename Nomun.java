@@ -18,39 +18,27 @@ public class Nomun extends alienigena {
     public void setAutotraslacion(double autotraslacion) {
         this.autotraslacion = autotraslacion;
     }
-    
-    @Override
-    public String Duermen() {
-    int n1 =(int) (Math.random()*2) +1;
-    if (n1 == 1){
-        return "Esta durmiendo";
-    }
-    else {
-        return "Esta despierto";
-    }
+      @Override
+    public int Duermen() {
+        return 15;
     }
 
     @Override
     public String Comen() {
-       int n2 =(int) (Math.random()*2) +1;
-    if (n2 == 1){
-        return "Esta comiendo";
-    }
-    else {
-        return "No esta comiendo";
-    }
-        
+        return (Math.random() < 0.5) ? "El alienígena está comiendo" : "El alienígena no está comiendo";
     }
 
     @Override
     public String Atacan() {
-        int n3 =(int) (Math.random()*2) +1;
-    if (n3 == 1){
-        return "Esta atacando";
-    }
-    else {
-        return "No esta atacando";
-    }
+        return (Math.random() < 0.5) ? "El alienígena está atacando" : "El alienígena no está atacando";
     }
     
+     @Override
+    public String toString() {
+        return "Nomun{" +
+               "tipo='" + getTipo() + '\'' +
+               ", autotraslacion=" + autotraslacion +
+               '}';
+    }
 }
+   
