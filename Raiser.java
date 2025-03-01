@@ -13,6 +13,7 @@ public class Raiser extends Alienigena{
 
     public Raiser(String tipo,int invisivilidad) {
         super(tipo);
+          this.invisibilidad = invisibilidad;
     }
 
     public int getInvisibilidad() {
@@ -22,37 +23,30 @@ public class Raiser extends Alienigena{
     public void setInvisibilidad(int invisibilidad) {
         this.invisibilidad = invisibilidad;
     }
-    
-    public int random(){
-        int d=(int)(Math.random()*2)+1;
-        return d;
-    } 
-    
-    @Override
-    public String Duermen() {
-        if (random()==1) {
-            return "El alienigena esta durmiendo";
-        }else return "El alienigena esta despierto";
-    }
 
+    
     @Override
     public String Comen() {
-        int c = (int)(Math.random()*2)+1;
-        if (random()!=1) {
-            if (c==1) {
-                return "El alienigena esta comiendo";
-            }
-        }return "El alienigena no esta comiendo";
+        return (Math.random() < 0.5) ? "El alienígena está comiendo" : "El alienígena no está comiendo";
     }
 
     @Override
     public String Atacan() {
-        int a = (int)(Math.random()*2)+1;
-        if (random()!=1) {
-            if (a==1) {
-                return "El alienigena esta atacando";
-            }
-        }return "El alienigena no esta atacando";
+        return (Math.random() < 0.5) ? "El alienígena está atacando" : "El alienígena no está atacando";
+    }
+
+
+    @Override
+    public String toString() {
+        return "Raiser{" +
+               "tipo='" + getTipo() + '\'' +
+               ", invisibilidad=" + invisibilidad +
+               '}';
+    }
+
+    @Override
+    public int Duermen() {
+        return 15;
     }
      
 }
