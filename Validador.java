@@ -28,4 +28,9 @@ public class Validador {
             throw new Excepciones("Error: La entrada no es un número entero válido.");
         }
     }
+    public void validaChar(char confirmacion) throws Excepciones{
+        if (confirmacion!='s' || confirmacion!='n') {
+            throw new Excepciones("Error: La entrada no es 's' o 'n' válido.");
+        }
+    } 
 }
