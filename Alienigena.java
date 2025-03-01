@@ -15,7 +15,13 @@ public abstract class Alienigena {
     public Alienigena(String tipo) {
         this.tipo = tipo;
     }
-    
+    public void setTipo(double autotraslacion) {
+        this.tipo = tipo;
+    }
+
+    public String getTipo() { // Corrección del error en el getter
+        return tipo;
+    }
     public abstract int Duermen();
     public abstract String Comen();
     public abstract String Atacan();
