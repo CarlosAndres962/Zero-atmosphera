@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.zeroatmosphera;
+    package zeroatmospher;
 
 /**
  *
@@ -23,25 +23,30 @@ public class Raiser extends Alienigena{
     public void setInvisibilidad(int invisibilidad) {
         this.invisibilidad = invisibilidad;
     }
-
+    
+    public int randomCome(){
+        int c = (int) (Math.random() * 2);
+        return c;
+    }
+    
     @Override
     public String Comen() {
-        int numeroAleatorio = (int) (Math.random() * 2); // Genera 0 o 1
-        if (numeroAleatorio == 0) {
-            return "El alienígena está comiendo";
+        if (randomCome() == 0) {
+            return "El alienigena esta comiendo";
         } else {
-            return "El alienígena no está comiendo";
+            return "El alienigena no esta comiendo";
         }
     }
 
     @Override
     public String Atacan() {
         int numeroAleatorio = (int) (Math.random() * 2); // Genera 0 o 1
-        if (numeroAleatorio == 0) {
-            return "El alienígena está atacando";
-        } else {
-            return "El alienígena no está atacando";
+        if (randomCome()!=0) {
+            if (numeroAleatorio == 0) {
+            return "El alienigena esta atacando";
+            }
         }
+        return "El alienigena no esta atacando";
     }
     
 
@@ -50,6 +55,7 @@ public class Raiser extends Alienigena{
         return "Raiser{" +
                "tipo='" + getTipo() + '\'' +
                ", invisivilidad=" + invisibilidad +
+               ", Codigo: "+ getCodigo()+
                '}';
     }
 

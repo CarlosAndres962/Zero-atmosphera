@@ -18,10 +18,12 @@ public class Nomun extends Alienigena {
     public void setAutotraslacion(double autotraslacion) {
         this.autotraslacion = autotraslacion;
     }
+    
     public int randomCome(){
         int c = (int) (Math.random() * 2);
         return c;
     }
+    
     @Override
     public int Duermen() {
         return 15;
@@ -30,9 +32,9 @@ public class Nomun extends Alienigena {
     @Override
     public String Comen() {
         if (randomCome() == 0) {
-            return "El alienígena está comiendo";
+            return "El alienigena esta comiendo";
         } else {
-            return "El alienígena no está comiendo";
+            return "El alienigena no esta comiendo";
         }
     }
 
@@ -41,18 +43,19 @@ public class Nomun extends Alienigena {
         int numeroAleatorio = (int) (Math.random() * 2); // Genera 0 o 1
         if (randomCome()!=0) {
             if (numeroAleatorio == 0) {
-            return "El alienígena está atacando";
+            return "El alienigena esta atacando";
             }
         }
-        return "El alienígena no está atacando";
-        }
+        return "El alienigena no esta atacando";
+    }
     
     
      @Override
     public String toString() {
-        return "Nomun{" +
+        return "Nomun" +
                "tipo='" + getTipo() + '\'' +
-               ", autotraslacion=" + autotraslacion +
+               ", autotraslacion=" + autotraslacion+
+               ", Codigo: "+ getCodigo()+
                '}';
     }
 }
