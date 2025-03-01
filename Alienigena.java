@@ -15,7 +15,7 @@ public abstract class Alienigena {
     public Alienigena(String tipo) {
         this.tipo = tipo;
     }
-    public void setTipo(double autotraslacion) {
+    public void setTipo(double tipo) {
         this.tipo = tipo;
     }
 
