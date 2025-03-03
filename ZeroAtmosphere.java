@@ -391,7 +391,7 @@ public static void crearAlienigenas() {
             autotraslacion = Math.random() * 100;
         } else {
             tipo = "Raiser";
-            invisibilidad = (int) (Math.random() * 10);
+            invisibilidad = (int) (Math.random() * 101);
         }
 
         // Crear el alienígena basado en el tipo y agregarlo al array temporal
