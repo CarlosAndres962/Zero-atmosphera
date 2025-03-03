@@ -58,7 +58,15 @@ public class Mineros extends Tripulacion {
     public String generaCodigo(){
         return "min-"+String.format("%04d",ncod++);
     }
-
+@Override
+    public String toString() {
+        return String.format("%-10s %-5s %-10s %-12d",
+                             this.getNombre(),
+                             this.getSexo(),
+                             this.getCodigo(),
+                             this.getEdad());
+    }
+    
   
     
 }
