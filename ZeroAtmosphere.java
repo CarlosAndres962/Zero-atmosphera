@@ -1,10 +1,9 @@
 
 package zeroatmosphere;
 import java.util.Scanner;
-
 public class ZeroAtmosphere {
-    static String alienigenas = "";
-    static int num = 0;
+   static int alienigenas = 0;
+   
     static int cantidadSoldados = 0; //Inicialmente en 0, se actualizará dinámicamente
     static int cantidadMineros = 0;// Inicialmente en 0, se actualizará dinámicamente
     static Alienigena[] alienigenasArray = new Alienigena[0]; // Vector (array) de trabajos inicializado vacío.
@@ -13,7 +12,6 @@ public class ZeroAtmosphere {
     static Validador val=new Validador();
     
     static Scanner sc = new Scanner(System.in);
-    static Codigo generadorCodigos = new Codigo(); // Instancia de la clase Codigo
 
     static boolean operacionEnCurso = false;
     
@@ -41,17 +39,7 @@ public class ZeroAtmosphere {
                         System.out.println("No puedes iniciar una nueva operación mientras hay una en curso.");
                     } else {
                         costes(); 
-                       
-                        System.out.println("¿Deseas llevar a cabo la operación con estos costes? (S/N): ");
-                         char confirmacion = sc.next().charAt(0);
-
-                         if (confirmacion == 'S' || confirmacion == 's') {
-                        operacionEnCurso = true; // Marca que hay una operación en curso
-                        System.out.println("Operación iniciada.");
-                        } else {
-                         System.out.println("Operación cancelada.");
-                        }
-                         break;
+                       break;
                     }
                 break;
                 case 4:
@@ -68,8 +56,6 @@ public class ZeroAtmosphere {
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
-            
-            
         }while(opcion != 5);
         
         
@@ -77,24 +63,27 @@ public class ZeroAtmosphere {
   
 
    public static void costes(){
-      int num = 0; 
+     
       
-      try{
+      //try{
           
-      sc.nextLine();
+     // sc.nextLine();
       System.out.println("Introduce el número de alienígenas:");
-      alienigenas = sc.nextLine();
-      Validador val=new Validador();
+      alienigenas = sc.nextInt();
+     /* Validador val=new Validador();
         val.validarnumero(alienigenas);
        num = Integer.parseInt(alienigenas);
     }catch (Excepciones e) {
             System.out.println(e.getMessage());
-            } 
+            }*/ 
       
+      if (alienigenas == 0) {
+        System.out.println("No se puede iniciar la operación con 0 alienígenas. Operación cancelada.");
+        return; // Salir del método
+      }else{
       
-      
-      cantidadSoldados = num * 2; // El número de soldados es el doble de alienígenas
-      cantidadMineros = num * 2;  // El número de mineros es el doble de alienígenas
+      cantidadSoldados = alienigenas * 2; // El número de soldados es el doble de alienígenas
+      cantidadMineros = alienigenas * 2;  // El número de mineros es el doble de alienígenas
       
        
       
@@ -103,6 +92,7 @@ public class ZeroAtmosphere {
       
       crearSoldados(); // Llenar el array de soldados
       crearMineros();  // Llenar el array de mineros
+      crearAlienigenas();
  
        // Costes unitarios por día
     int costeMinero = 20;
@@ -116,7 +106,7 @@ public class ZeroAtmosphere {
     int costeCombustible = numeroAerocars * consumoPorDia * diasOperacion;
     
     // Cálculo de costes
-    int costeTripulacion = ((cantidadMineros * costeMinero) + (cantidadSoldados * costeSoldado) + (num * penalizacionAlien)) * diasOperacion;
+    int costeTripulacion = ((cantidadMineros * costeMinero) + (cantidadSoldados * costeSoldado) + (alienigenas * penalizacionAlien)) * diasOperacion;
     int costeTotal = costeTripulacion + costeCombustible;
     
     System.out.println("\n--- Información genérica de la operación ---");
@@ -134,11 +124,24 @@ public class ZeroAtmosphere {
     System.out.println("Coste final de la operación: " + costeTotal + " yurs");
         
     System.out.println("\n--- Códigos  ---");
+    
     codigosAlienigenas();
     codigosMineros();
     codigosSoldados();
     operacionEnCurso = false; // Ahora no hay operación en curso
-   
+    
+    System.out.println("¿Deseas llevar a cabo la operación con estos costes? (S/N): ");
+    char confirmacion = sc.next().charAt(0);
+
+    if (confirmacion == 'S' || confirmacion == 's') {
+    operacionEnCurso = true; // Marca que hay una operación en curso
+    System.out.println("Operación iniciada.");
+    } else {
+    System.out.println("Operación cancelada.");
+    }
+                         
+      
+}
 
     
    }
@@ -179,8 +182,8 @@ public static void crearSoldados(){
             }
         }
      
-        String codigoUnico = generadorCodigos.codSol(); // Generar código único para el soldado
-        Soldados soldado = new Soldados((int) (Math.random() * 10) + 1, nombreSoldado, sexoSoldado, codigoUnico);
+        // Generar código único para el soldado
+        Soldados soldado = new Soldados((int) (Math.random() * 10) + 1, nombreSoldado, sexoSoldado);
         sol[i] = soldado; //Almacenar el objeto en el array
     }
  }      
@@ -209,8 +212,8 @@ public static void crearMineros(){
             }
         }
            
-        String codigoUnico = generadorCodigos.codMin(); // Generar código único para el minero
-        Mineros minero = new Mineros((int) (Math.random() * 10) + 1, nombreMinero, sexoMinero, codigoUnico);
+   // Generar código único para el minero
+        Mineros minero = new Mineros((int) (Math.random() * 10) + 1, nombreMinero, sexoMinero);
         min[i] = minero; //Almacenar el objeto en el array
     }        
  }
@@ -224,11 +227,7 @@ public static void listaCompletaSoldados(Soldados[] soldados) {
         for (int i = 0; i < soldados.length; i++) {
             Soldados soldado = soldados[i];
             if (soldado != null) { // Verifica que el objeto no sea nulo
-                System.out.println(String.format("%-10s %-5s %-10s %-12d",
-                    soldado.getNombre(),
-                    soldado.getSexo(),
-                    soldado.getCodigo(),
-                    soldado.getGraduacion()));
+                System.out.println(soldado.toString()); 
             } else {
                 System.out.println("Error: Soldado nulo en la posición " + i);
             }
@@ -247,11 +246,7 @@ public static void listaCompletaMineros(Mineros[] mineros) {
         for (int i = 0; i < mineros.length; i++) {
             Mineros minero = mineros[i];
             if (minero != null) { // Verifica que el objeto no sea nulo
-                System.out.println(String.format("%-10s %-5s %-10s %-12d",
-                    minero.getNombre(),
-                    minero.getSexo(),
-                    minero.getCodigo(),
-                    minero.getEdad()));
+                System.out.println(minero.toString());
             } else {
                 System.out.println("Error: Minero nulo en la posición " + i);
             }
@@ -267,7 +262,8 @@ public static void nombresSoldados(Soldados[] soldados) {
         for (int i = 0; i < soldados.length; i++) {
             Soldados soldado = soldados[i];
             if (soldado != null) { // Verifica que el objeto no sea nulo
-                System.out.println(soldado.getNombre()); // Solo imprime el nombre
+                System.out.println(soldado.getNombre());
+                // Solo imprime el nombre
             } else {
                 System.out.println("Error: Soldado nulo en la posición " + i);
             }
@@ -315,7 +311,7 @@ public static void mostrarEstadoNave() {
         final int DIAS_OPERACION = 3;
 
         // Cálculo de costes
-        int costeTripulacion = ((cantidadMineros * COSTE_MINERO) + (cantidadSoldados * COSTE_SOLDADO) + (num * PENALIZACION_ALIEN)) * DIAS_OPERACION;
+        int costeTripulacion = ((cantidadMineros * COSTE_MINERO) + (cantidadSoldados * COSTE_SOLDADO) + (alienigenas * PENALIZACION_ALIEN)) * DIAS_OPERACION;
         int numeroAerocars = 2; // Suponiendo que estás usando 2 aerocars
         int consumoPorDia = 50; // Consumo de cada Aerocar en yurs
         int costeCombustible = numeroAerocars * consumoPorDia * DIAS_OPERACION;
@@ -334,7 +330,7 @@ public static void mostrarEstadoNave() {
         System.out.println("\nMineros:");
         listaCompletaMineros(min);
         System.out.println("\nalienigenas:");
-        crearYMostrarAlienigenas(alienigenasArray);
+        listaCompletaAliens(alienigenasArray);
         
         } else {
             System.out.println("\n--- Estado Actual de la Nave ---");
@@ -382,16 +378,9 @@ public static void codigosMineros(){
 }
 
 
-public static void crearYMostrarAlienigenas(Alienigena[] alienigena) {
-     Alienigena[] temporal; 
-    for (int i = 0; i < num; i++) {
-        // Crear un nuevo array provisional con tamaño incrementado
-        temporal = new Alienigena[alienigenasArray.length + 1];
-        
-        // Copiar los elementos del array original al array temporal
-        for (int j = 0; j < alienigenasArray.length; j++) {
-            temporal[j] = alienigenasArray[j];
-        }
+public static void crearAlienigenas() {
+     Alienigena[] temporal = new Alienigena[alienigenas]; // // Copiar los elementos del array original al array temporal
+    for (int i = 0; i < alienigenas; i++) {
         
         double autotraslacion = 0;
         int invisibilidad = 0;
@@ -414,20 +403,20 @@ public static void crearYMostrarAlienigenas(Alienigena[] alienigena) {
 
         // Asignar el array temporal al array original
         alienigenasArray = temporal;
-        
-        // Mostrar la información de los alienígenas creados
-        for (Alienigena alien : alienigenasArray) { //Este es un bucle for-each, que itera sobre cada elemento del array alienigenasArray, asignando cada elemento a la variable alien en cada iteración.
-            System.out.println("Información del Alienígena:");
-            System.out.println(alien);  // Esto invoca el método toString()
-            System.out.println("Código: " + alien.getCodigo());
-            System.out.println("Durmiendo por " + alien.Duermen() + " horas.");
-            System.out.println(alien.Comen());
-            System.out.println(alien.Atacan());
-            System.out.println("----------------------");
-        }
     }
-    
    }
+
+public static void listaCompletaAliens(Alienigena[] alienigena){
+ 
+    for (int i = 0; i < alienigenasArray.length; i++) {
+           Alienigena alien = alienigenasArray[i];
+            if (alien != null) { // Verifica que el objeto no sea nulo
+                System.out.println(alien.toString());
+            } else {
+                System.out.println("Error: Alien nulo en la posición " + i);
+            }
+        }
+}
 
 
 }
