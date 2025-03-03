@@ -52,11 +52,17 @@ public class Nomun extends Alienigena {
     
      @Override
     public String toString() {
-        return "Nomun" +
-               "tipo='" + getTipo() + '\'' +
-               ", autotraslacion=" + autotraslacion+
-               ", Codigo: "+ getCodigo()+
-               '}';
+        String detalles= "";
+        detalles += "Información del Alienígena:\n";
+        detalles += "Tipo: Nomun\n";
+        detalles += "Código " + getCodigo()+ "\n";
+        detalles += "Autotraslación " + String.format("%.2f", getAutotraslacion())+ "\n";
+        detalles += "Duermen " + Duermen() + "horas\n";
+        detalles += Comen()+"\n";
+        detalles += Atacan()+"\n";
+        detalles += ("----------------------");
+        return detalles;
+      
     }
 }
    
