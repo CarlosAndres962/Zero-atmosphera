@@ -63,4 +63,13 @@ public class Soldados extends Tripulacion {
         return "sol-"+String.format("%04d",ncod++);
     }
 
+    @Override
+    public String toString() {
+        return String.format("%-10s %-5s %-10s %-12d",
+                             this.getNombre(),
+                             this.getSexo(),
+                             this.getCodigo(),
+                             this.getGraduacion());
+    }
+
 }
