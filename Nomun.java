@@ -5,8 +5,7 @@ public class Nomun extends Alienigena {
 // Atriutos
     private double autotraslacion;  
  //constructor   
-    public Nomun(String tipo, double autotraslacion) {
-        super(tipo);
+    public Nomun(double autotraslacion) {
         this.autotraslacion=autotraslacion;
     }
 // Metodos
