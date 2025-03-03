@@ -11,9 +11,8 @@
 public class Raiser extends Alienigena{
      public int invisibilidad;
 
-    public Raiser(String tipo,int invisivilidad) {
-        super(tipo);
-          this.invisibilidad = invisibilidad;
+     public Raiser(int invisibilidad) {
+        this.invisibilidad = invisibilidad;
     }
 
     public int getInvisibilidad() {
