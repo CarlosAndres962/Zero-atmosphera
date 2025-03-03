@@ -396,9 +396,9 @@ public static void crearAlienigenas() {
 
         // Crear el alienígena basado en el tipo y agregarlo al array temporal
         if (tipo.equals("Nomun")) {
-            temporal[temporal.length - 1] = new Nomun(autotraslacion);
+            temporal[i] = new Nomun(autotraslacion);
         } else if (tipo.equals("Raiser")) {
-            temporal[temporal.length - 1] = new Raiser(invisibilidad);
+            temporal[i] = new Raiser(invisibilidad);
         }
 
         // Asignar el array temporal al array original
