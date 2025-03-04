@@ -6,27 +6,25 @@ public abstract class Tripulacion {
     //Atributos
     protected String nombre;
     protected char sexo;
-    protected String codigo;
     
     //Construtores
     public Tripulacion() {
     }
 
-    public Tripulacion(String nombre) {
+    public Tripulacion(String nombre,char sexo) {
         this.nombre = nombre;
+        this.sexo=sexo;
     }
     
 
     public Tripulacion(String nombre, String codigo) {
         this.nombre = nombre;
-        this.codigo = codigo;
     }
     
 
     public Tripulacion(String nombre, char sexo, String codigo) {
         this.nombre = nombre;
         this.sexo = sexo;
-        this.codigo = codigo;
     }
     //Metodos
     public String getNombre() {
@@ -44,16 +42,8 @@ public abstract class Tripulacion {
     public void setSexo(char sexo) {
         this.sexo = sexo;
     }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
     
-    public abstract String generaCodigo();
+    public abstract String getCodigo();
     
     
 }
