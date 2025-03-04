@@ -22,8 +22,8 @@ public class Validador {
         try {
             
             int num = Integer.parseInt(numero);
-            if (num < 0) {
-                throw new Excepciones("Error: El número no puede ser negativo.");
+            if (num <= 0) {
+                throw new Excepciones("Error: El número no puede ser negativo o cero.");
             }
         } catch (NumberFormatException e) {
             throw new Excepciones("Error: La entrada no es un número entero válido.");
