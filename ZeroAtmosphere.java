@@ -1,8 +1,10 @@
 
-package zeroatmosphere;
+package zeroatmospher;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class ZeroAtmosphere {
-   static int alienigenas = 0;
+    static int alienigenas = 0;
+    static String confirmacion="";
    
     static int cantidadSoldados = 0; //Inicialmente en 0, se actualizará dinámicamente
     static int cantidadMineros = 0;// Inicialmente en 0, se actualizará dinámicamente
@@ -17,32 +19,35 @@ public class ZeroAtmosphere {
     
     public static void main(String[] args) {
    
-        int opcion = 0;
-        
-        do{
-            System.out.println("\n--- Menú Principal ---");
-            System.out.println("1.Estado completo de la BlueStar-IV");
-            System.out.println("2.Modificar tripulación o vehículos");
-            System.out.println("3.Iniciar nueva operación");
-            System.out.println("4.Finalizar operación");
-            System.out.println("5.Salir");
-            opcion = sc.nextInt();
-            
-            switch (opcion) {
-                case 1:
+        String op="";
+            do{
+                try{
+                    System.out.println("\n--- Menú Principal ---");
+                    System.out.println("1.Estado completo de la BlueStar-IV");
+                    System.out.println("2.Modificar tripulación o vehículos");
+                    System.out.println("3.Iniciar nueva operación");
+                    System.out.println("4.Finalizar operación");
+                    System.out.println("5.Salir");
+                    op = sc.nextLine();
+                    val.validarnumero(op);
+                }catch(Excepciones e){
+                    System.out.println(e.getMessage());
+                }
+            switch (op) {
+                case "1":
                     mostrarEstadoNave();
                     break;
-                case 2:
+                case "2":
                     break;
-                case 3:
+                case "3":
                     if (operacionEnCurso) {
                         System.out.println("No puedes iniciar una nueva operación mientras hay una en curso.");
                     } else {
                         costes(); 
                        break;
                     }
-                break;
-                case 4:
+                    break;
+                case "4":
                     if (operacionEnCurso) {
                         operacionEnCurso = false; // Marca que la operación ha finalizado
                         System.out.println("Operación finalizada.");
@@ -50,13 +55,13 @@ public class ZeroAtmosphere {
                         System.out.println("No hay ninguna operación en curso para finalizar.");
                     }
                     break;
-                case 5:
+                case "5":
                     System.out.println("Saliendo del sistema...");
                     break;
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
-        }while(opcion != 5);
+        }while(!op.equals("5"));
         
         
       }  
@@ -65,22 +70,16 @@ public class ZeroAtmosphere {
    public static void costes(){
      
       
-      //try{
-          
-     // sc.nextLine();
-      System.out.println("Introduce el número de alienígenas:");
-      alienigenas = sc.nextInt();
-     /* Validador val=new Validador();
-        val.validarnumero(alienigenas);
-       num = Integer.parseInt(alienigenas);
-    }catch (Excepciones e) {
+      try{
+        System.out.println("Introduce el número de alienígenas:");
+        String ali=sc.nextLine();
+        val.validarnumero(ali);
+        alienigenas = Integer.parseInt(ali);
+        } catch (InputMismatchException e) {
+           System.out.println(e.getMessage());
+        }catch (Excepciones e) {
             System.out.println(e.getMessage());
-            }*/ 
-      
-      if (alienigenas == 0) {
-        System.out.println("No se puede iniciar la operación con 0 alienígenas. Operación cancelada.");
-        return; // Salir del método
-      }else{
+            } 
       
       cantidadSoldados = alienigenas * 2; // El número de soldados es el doble de alienígenas
       cantidadMineros = alienigenas * 2;  // El número de mineros es el doble de alienígenas
@@ -130,21 +129,24 @@ public class ZeroAtmosphere {
     codigosSoldados();
     operacionEnCurso = false; // Ahora no hay operación en curso
     
-    System.out.println("¿Deseas llevar a cabo la operación con estos costes? (S/N): ");
-    char confirmacion = sc.next().charAt(0);
-
-    if (confirmacion == 'S' || confirmacion == 's') {
+    try{
+        sc.nextLine();
+        System.out.println("¿Deseas llevar a cabo la operación con estos costes? (S/N): ");
+        confirmacion = sc.nextLine().toLowerCase();
+        val.validaChar(confirmacion);
+    }catch (Excepciones e){
+        System.out.println(e.getMessage());
+    }
+    if (confirmacion.equals("s")) {
     operacionEnCurso = true; // Marca que hay una operación en curso
     System.out.println("Operación iniciada.");
     } else {
     System.out.println("Operación cancelada.");
     }
-                         
-      
-}
-
+                               
     
-   }
+
+}
 
 public static char asignarSexoAleatorio(){
     int aleatorio = (int) (Math.random() * 2); // Asignar sexo aleatorio (0: Hombre, 1: Mujer)
