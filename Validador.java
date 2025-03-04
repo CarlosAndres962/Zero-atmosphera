@@ -11,15 +11,21 @@ package zeroatmospher;
 public class Validador {
     public Validador(){}
     
-    public void validarnumero(int numero) throws Excepciones {
+    public void validarnumero(String numero) throws Excepciones {
+        // Verifica si la entrada es un número decimal
+        
+        if (numero.contains(".")) {
+            throw new Excepciones("El número no puede ser un decimal.");
+        }
 
         // Verifica si la entrada es un número entero válido
         try {
             
-            if (numero < 0) {
+            int num = Integer.parseInt(numero);
+            if (num < 0) {
                 throw new Excepciones("Error: El número no puede ser negativo.");
             }
-        } catch (NumberFormatException e) {// Verifica si la entrada es un número decimal
+        } catch (NumberFormatException e) {
             throw new Excepciones("Error: La entrada no es un número entero válido.");
         }
     }
