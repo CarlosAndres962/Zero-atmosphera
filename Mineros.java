@@ -9,11 +9,11 @@ package zeroatmosf;
  * @author ivand
  */
 public class Mineros extends Tripulacion {
-    private static int ncod;
+    private Codigo codigo=new Codigo();
     public int edad;
 
-    public Mineros(int edad, String nombre, char sexo, String codigo) {
-        super(nombre, sexo, codigo);
+    public Mineros(int edad, String nombre, char sexo) {
+        super(nombre, sexo);
         this.edad = edad;
     }
 
@@ -37,17 +37,6 @@ public class Mineros extends Tripulacion {
         this.sexo = sexo;
     }
 
-    @Override
-    public String getCodigo() {
-        return codigo;
-    }
-
-    @Override
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-    
-
     public int getEdad() {
         return edad;
     }
@@ -55,10 +44,12 @@ public class Mineros extends Tripulacion {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-    public String generaCodigo(){
-        return "min-"+String.format("%04d",ncod++);
+    @Override
+    public String getCodigo(){
+        return codigo.codMin();
     }
-@Override
+    
+    @Override
     public String toString() {
         return String.format("%-10s %-5s %-10s %-12d",
                              this.getNombre(),
@@ -66,7 +57,5 @@ public class Mineros extends Tripulacion {
                              this.getCodigo(),
                              this.getEdad());
     }
-    
   
-    
 }
