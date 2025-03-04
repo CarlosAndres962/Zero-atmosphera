@@ -10,19 +10,9 @@ package zeroatmospher;
  */
 public abstract class Alienigena {
     private Codigo codigo=new Codigo();
-    String tipo;
-
-    public Alienigena(String tipo) {
-        this.tipo = tipo;
-    }
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getTipo() { // Corrección del error en el getter
-        return tipo;
-    }
-
+    
+    public Alienigena(){}
+    
     public String getCodigo() {
         return codigo.codAli();
     }
@@ -33,3 +23,4 @@ public abstract class Alienigena {
     
     
 }
+
