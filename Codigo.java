@@ -16,13 +16,6 @@ public class Codigo {
     private static int contmas = 0;
     private static int contmin = 0;
     private static int contsol = 0;
-    //atributos codigo
-    private String codper;
-    private String codcars;
-    private String codali;
-    private String codmas;
-    private String codmin;
-    private String codsol;
     
     //constructor vacio
     public Codigo() {
