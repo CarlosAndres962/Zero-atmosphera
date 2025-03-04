@@ -12,8 +12,8 @@ public abstract class Mascotas extends Tripulacion {
     
     //Atributos
     private Codigo codigo=new Codigo();
-    public Mascotas(String nombre, String codigo) {
-        super(nombre, codigo);
+    public Mascotas(String nombre, String sexo) {
+        super(nombre, sexo);
     }
      
     //Constructor
