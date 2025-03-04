@@ -68,11 +68,10 @@ public class ZeroAtmosphere {
   
 
    public static void costes(){
-     
+     System.out.println("Introduce el número de alienígenas:");
+     String ali=sc.nextLine();
       
       try{
-        System.out.println("Introduce el número de alienígenas:");
-        String ali=sc.nextLine();
         val.validarnumero(ali);
         alienigenas = Integer.parseInt(ali);
         } catch (InputMismatchException e) {
@@ -80,7 +79,7 @@ public class ZeroAtmosphere {
         }catch (Excepciones e) {
             System.out.println(e.getMessage());
             } 
-      
+      while(alienigenas!=0 && alienigenas>0){
       cantidadSoldados = alienigenas * 2; // El número de soldados es el doble de alienígenas
       cantidadMineros = alienigenas * 2;  // El número de mineros es el doble de alienígenas
       
@@ -129,22 +128,26 @@ public class ZeroAtmosphere {
     codigosSoldados();
     operacionEnCurso = false; // Ahora no hay operación en curso
     
+   
+    
     try{
-        sc.nextLine();
         System.out.println("¿Deseas llevar a cabo la operación con estos costes? (S/N): ");
         confirmacion = sc.nextLine().toLowerCase();
         val.validaChar(confirmacion);
     }catch (Excepciones e){
         System.out.println(e.getMessage());
     }
-    if (confirmacion.equals("s")) {
+    
+       if (confirmacion.equals("s")) {
     operacionEnCurso = true; // Marca que hay una operación en curso
     System.out.println("Operación iniciada.");
     } else {
     System.out.println("Operación cancelada.");
     }
-                               
-    
+       
+    break;
+      }     
+ 
 
 }
 
@@ -419,11 +422,7 @@ public static void listaCompletaAliens(Alienigena[] alienigena){
             }
         }
 }
-
-
 }
-    
-        
        
         
          
