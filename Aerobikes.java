@@ -52,8 +52,6 @@ public class Aerobikes extends Vehiculos implements Turbojets{
                 "\nTipo: "+tipo+
                 "\nNumero de turbojets: "+nturbo+
                 "\nVelocidad: "+velocidad+
-                "\nLargo: "+largo+
-                "\nAncho: "+ancho+
                 "\nNumERO de personas: "+numper+
                 "\n----------------";
     }
