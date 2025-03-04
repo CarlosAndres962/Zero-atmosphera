@@ -2,11 +2,12 @@
 package beta;
 
 
-public class Persona extends tripulacion {
+public class Persona extends Tripulacion {
     //Atributos
    private double peso;
    private double altura;
    private int edad;
+   Codigo codigo=new Codigo();
 //constructor
    public Persona(){
        
@@ -39,9 +40,8 @@ public class Persona extends tripulacion {
     }
     
     @Override
-    public String generaCodigo() {
-        return "per-"+String.format("%04d"+codigo++);
+    public String getCodigo() {
+        return codigo.codPer();
     }
-   
-   
+  
 }
