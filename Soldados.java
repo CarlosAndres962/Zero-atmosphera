@@ -9,14 +9,14 @@ package zeroatmosf;
  * @author ivand
  */
 public class Soldados extends Tripulacion {
-    private static int ncod=0;
+    private Codigo codigo=new Codigo();
     public int graduacion;
 
     public Soldados() {
     }
 
-    public Soldados(int graduacion, String nombre, char sexo, String codigo) {
-        super(nombre, sexo, codigo);
+    public Soldados(int graduacion, String nombre, char sexo) {
+        super(nombre, sexo);
         this.graduacion = graduacion;
     }
 
@@ -40,17 +40,6 @@ public class Soldados extends Tripulacion {
         this.sexo = sexo;
     }
 
-    @Override
-    public String getCodigo() {
-        return codigo;
-    }
-
-    @Override
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-    
-
     public int getGraduacion() {
         return graduacion;
     }
@@ -59,10 +48,9 @@ public class Soldados extends Tripulacion {
         this.graduacion = graduacion;
     }
 
-    public String generaCodigo(){
-        return "sol-"+String.format("%04d",ncod++);
+    public String getCodigo(){
+        return codigo.codSol();
     }
-
     @Override
     public String toString() {
         return String.format("%-10s %-5s %-10s %-12d",
