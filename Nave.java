@@ -6,7 +6,7 @@ package zeroatmosf;
 
 public abstract class Nave {
 
-    protected int nruedas;
+    protected String tipo;
     protected double potencia;
     protected int nuMotores;
     protected String laboratorio;
@@ -15,8 +15,8 @@ public abstract class Nave {
     public Nave() {
     }
 
-    public Nave(int nruedas, double potencia, int nuMotores, String laboratorio, int tunCiclo, int capsHibernacion) {
-        this.nruedas = nruedas;
+    public Nave(String tipo, double potencia, int nuMotores, String laboratorio, int tunCiclo, int capsHibernacion) {
+        this.tipo = tipo;
         this.potencia = potencia;
         this.nuMotores = nuMotores;
         this.laboratorio = laboratorio;
@@ -24,12 +24,12 @@ public abstract class Nave {
         this.capsHibernacion = capsHibernacion;
     }
 
-    public int getNruedas() {
-        return nruedas;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setNruedas(int nruedas) {
-        this.nruedas = nruedas;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public double getPotencia() {
@@ -72,14 +72,15 @@ public abstract class Nave {
    
       @Override
      public String toString(){
-        return "Detalles Nave:"+
-                "\nNumero de ruedas: " + nruedas +
-                "\n Potecia: "+ potencia +
+        return "----Detalles Nave----"+
+                "\nTipo: " + tipo +
+                "\nPotecia: "+ potencia +
                 "\nMotores: "+ nuMotores +
                 "\nLaboratorio: " + laboratorio +
                 "\nTuneles Ciclonicos: " + tunCiclo +
                 "\nCapas de Hibernación: " + capsHibernacion +
-                "\n----------------";
+                "\n-------------------\n";
     }
 
-    }
+}
+
