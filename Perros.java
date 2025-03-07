@@ -12,7 +12,7 @@ public class Perros extends Mascotas {
     
     public String raza;
     
-   public Perros(String nombre, String codigo, String raza) {
+   public Perros(String nombre, char sexo, String raza) {
         super(nombre, sexo);
         this.raza = raza;
     }
