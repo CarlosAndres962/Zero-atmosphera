@@ -8,6 +8,8 @@ public abstract class Vehiculos{
     protected double velocidad;
     protected int nturbo;
    //Constructores 
+    public Vehiculos(){
+    }
     public Vehiculos(int numper,double velocidad,int nturbo){
         this.numper=numper;
         this.velocidad=velocidad;
