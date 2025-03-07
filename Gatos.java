@@ -12,8 +12,8 @@ public class Gatos extends Mascotas {
     
     public String raza;
 
-    public Gatos(String nombre, String codigo, String raza) {
-    super(nombre, codigo);
+    public Gatos(String nombre, char sexo, String raza) {
+    super(nombre, sexo);
     this.raza = raza;
     }
     
