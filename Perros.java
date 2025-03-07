@@ -13,7 +13,7 @@ public class Perros extends Mascotas {
     public String raza;
     
    public Perros(String nombre, String codigo, String raza) {
-        super(nombre, codigo);
+        super(nombre, sexo);
         this.raza = raza;
     }
     public void setRaza(String raza) {
