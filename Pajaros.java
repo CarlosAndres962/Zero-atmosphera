@@ -10,8 +10,8 @@ package zeroatmosphere;
  */
 public class Pajaros extends Mascotas{
     
-    public Pajaros(String nombre, String codigo) {
-        super(nombre, codigo);
+    public Pajaros(String nombre, char sexo) {
+        super(nombre, sexo);
     }
     public String especie;
 
