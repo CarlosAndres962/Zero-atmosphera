@@ -20,6 +20,15 @@ public class Codigo {
     //constructor vacio
     public Codigo() {
     }
+
+    public static void reiniciarContadores() {
+        contper = 0;
+        contcars = 0;
+        contali = 0;
+        contmas = 0;
+        contmin = 0;
+        contsol = 0;
+    }
     
     //metodos con incremento de contador y retorno de string con codigo unico
     public String codPer() {
