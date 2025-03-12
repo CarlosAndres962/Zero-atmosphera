@@ -8,25 +8,18 @@ package zeroatmosphere;
  *
  * @author sarag
  */
-public class PropietarioMascota extends Mascotas {
+public class PropietarioMascota{
+    public String nombre;
 
-    public PropietarioMascota(String nombre, String codigo) {
-        super(nombre, codigo);
+    public PropietarioMascota(String nombre) {
+        this.nombre=nombre;
     }
 
-    @Override
-    public String Comunican() {
-        return "Se esta comunicando";
-    }
-
-    @Override
-    public String Duermen() {
-        return "esta durmiendo";
-    }
-
-    @Override
-    public String Comen() {
-        return "esta comiendo";
+    public String getNombre(){
+        return nombre;
     }
     
+    public void setNombre(){
+        this.nombre=nombre;
+    }
 }
