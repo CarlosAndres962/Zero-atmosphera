@@ -38,5 +38,8 @@ public class Perros extends Mascotas {
     public String Comen() {
         return "esta comiendo pienso";
     }
-    
+    @Override
+    public void movimiento(){
+        System.out.println("El perro esta moviendo la cola de alegria");
+    }
 }
