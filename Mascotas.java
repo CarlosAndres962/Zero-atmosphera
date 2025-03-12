@@ -8,7 +8,7 @@ package zeroatmosphere;
  *
  * @author sarag
  */
-public abstract class Mascotas extends Tripulacion {
+public abstract class Mascotas extends Tripulacion implements AccionMas{
     
     //Atributos
     private Codigo codigo=new Codigo();
