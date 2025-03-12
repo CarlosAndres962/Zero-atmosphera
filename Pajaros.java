@@ -38,5 +38,8 @@ public class Pajaros extends Mascotas{
     public String Comen() {
         return "esatn comiendo semillas";
     }
-    
+    @Override
+    public void movimiento(){
+        System.out.println("El pajaro esta vigilando mientras vuela");
+    }
 }
