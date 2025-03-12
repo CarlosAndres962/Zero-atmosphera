@@ -40,5 +40,9 @@ public class Gatos extends Mascotas {
     public String Comen() {
         return "estan comiendo pienso";
     }
-  
+    
+    @Override
+    public void movimiento(){
+        System.out.println("El gato tiene la cola en movimiento");
+    }
 }
