@@ -1,0 +1,42 @@
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+
+public class Main {
+
+    public static void main(String[] args) {
+        try {
+            //CREAMOS OBJETOS DE CADA CLASE 
+            CiberExcavadora ciberexcavadora = new CiberExcavadora("CiberExcavadora-PZK", 4, "ruedas", 0.9);
+            Martillo martillo = new Martillo("Martillo Hidraulico", 230, "manual", 0.3);
+            Pala pala = new Pala("Pala de Excavacion", 3, "aleacion", "pvc");
+            CiberCompresor cibercompresor = new CiberCompresor("Compresor Industrial", 3, "ruedas", 0.6);
+
+            //crear los archivos binarios para cada maquina
+            
+            ObjectOutputStream oos1 = new ObjectOutputStream(new FileOutputStream("C:\\AA_pruebas\\mov_tierra.dat"));
+            oos1.writeObject(ciberexcavadora);
+            oos1.close();
+
+            ObjectOutputStream oos2 = new ObjectOutputStream(new FileOutputStream("C:\\AA_pruebas\\martillo.dat"));
+            oos2.writeObject(martillo);
+            oos2.close();
+
+            ObjectOutputStream oos3 = new ObjectOutputStream(new FileOutputStream("C:\\AA_pruebas\\manual_pala.dat"));
+            oos3.writeObject(pala);
+            oos3.close();
+
+            ObjectOutputStream oos4 = new ObjectOutputStream(new FileOutputStream("C:\\AA_pruebas\\cibercompresor.dat"));
+            oos4.writeObject(cibercompresor);
+            oos4.close();
+
+            System.out.println("Archivos binarios creados exitosamente.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+
+    }
+}
