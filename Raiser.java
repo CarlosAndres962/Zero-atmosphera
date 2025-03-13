@@ -47,20 +47,30 @@ public class Raiser extends Alienigena{
         }
         return "El alienigena no esta atacando";
     }
-    
-
-    @Override
-    public String toString() {
-        return "Raiser{" +
-               "tipo='" + getTipo() + '\'' +
-               ", invisivilidad=" + invisibilidad +
-               ", Codigo: "+ getCodigo()+
-               '}';
-    }
 
     @Override
     public int Duermen() {
         return 15;
+    }
+
+    @Override
+    public String tipoAtaque(){
+        return "El aliegnigena ataca con sus garras por la espalda";
+    }
+    
+    @Override
+    public String toString() {
+        String detalles= "";
+        detalles += "Información del Alienígena:\n";
+        detalles += "Tipo: Raiser\n";
+        detalles += "Código " + getCodigo()+ "\n";
+        detalles += "Invisibilidad " + invisibilidad+ "\n";
+        detalles += "Duermen " + Duermen() + "horas\n";
+        detalles += Comen()+"\n";
+        detalles += Atacan()+"\n";
+        detalles += tipoAtaque()+"\n";
+        detalles += ("----------------------");
+        return detalles;
     }
      
 }
