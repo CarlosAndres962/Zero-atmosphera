@@ -47,7 +47,11 @@ public class Nomun extends Alienigena {
         }
         return "El alienigena no esta atacando";
     }
-    
+
+    @Override
+    public String tipoAtaque(){
+        return "El aliegnigena ataca con su cola que tiene como punta de cuchillo";
+    }
     
      @Override
     public String toString() {
@@ -59,6 +63,7 @@ public class Nomun extends Alienigena {
         detalles += "Duermen " + Duermen() + "horas\n";
         detalles += Comen()+"\n";
         detalles += Atacan()+"\n";
+        detalles += tipoAtaque()+"\n";
         detalles += ("----------------------");
         return detalles;
       
