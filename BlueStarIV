@@ -1,5 +1,10 @@
 public class BlueStarIV {
 
+import java.io.*;
+import binarios.*;
+
+public class BlueStarIV {
+
     public static void main(String[] args) {
         try {
             // Leer los arichvos binarios deserializar los objetos
