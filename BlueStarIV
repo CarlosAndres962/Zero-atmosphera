@@ -1,1 +1,38 @@
+public class BlueStarIV {
 
+    public static void main(String[] args) {
+        try {
+            // Leer los arichvos binarios deserializar los objetos
+
+            //Ciberexcavadora
+            ObjectInputStream ois1 = new ObjectInputStream(new FileInputStream("mov_tierra.dat"));
+            CiberExcavadora ciberexcavadora = (CiberExcavadora) ois1.readObject();
+            ois1.close();
+            ciberexcavadora.mostrarInfo();
+
+            //Martillo
+            ObjectInputStream ois2 = new ObjectInputStream(new FileInputStream("martillo.dat"));
+            Martillo martillo = (Martillo) ois2.readObject();
+            ois2.close();
+            martillo.mostrarInfo();
+            
+            //Pala
+            ObjectInputStream ois3 = new ObjectInputStream(new FileInputStream("Manual_pala.dat"));
+            Pala pala = (Pala) ois3.readObject();
+            ois3.close();
+            pala.mostrarInfo();
+            
+            //Cibercompresor
+            ObjectInputStream ois4 = new ObjectInputStream(new FileInputStream("cibercompresor.dat"));
+            CiberCompresor cibercompresor = (CiberCompresor) ois4.readObject();
+            ois4.close();
+            cibercompresor.mostrarInfo();
+            
+            System.out.println("Archivos binarios leidos y objetos restaurados correctamente.");
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            }
+        }
+
+    }
