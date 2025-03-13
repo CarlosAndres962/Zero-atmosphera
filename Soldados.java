@@ -64,6 +64,7 @@ public class Soldados extends Tripulacion {
                              this.getNombre(),
                              this.getSexo(),
                              this.getCodigo(),
-                             this.getGraduacion());
+                             this.getGraduacion(),
+                             this.armamento());
     }
 }
