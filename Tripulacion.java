@@ -35,23 +35,7 @@ public abstract class tripulacion implements Armas {
     } 
     public abstract String getCodigo();
 
-    @Override
-    public String armamento() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Escoge qué arma quieres que usen: ");
-        int n = sc.nextInt();
-        if(n==1){
-            return"rayo laser";
-        }
-        else if(n==2){
-            return"Espada luminica";
-        }
-        else if(n==3){
-            return "Pistola espacial";
-        }
-        else
-            return "Numero incorrecto";
-    }
+   
     
 }
 
