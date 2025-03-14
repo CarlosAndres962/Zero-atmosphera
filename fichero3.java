@@ -61,11 +61,14 @@ public class Martillo implements Serializable {
     }
 
     //METODO PARA MOSTRAR INFORMACION DEL MARTILLO
-    public void mostrarInfo() {
-        System.out.println("Martillo: " + nombre);
-        System.out.println("Consumo: " + consumo);
-        System.out.println("Sujeccion: " + sujeccion);
-        System.out.println("Proteccion: " + proteccion);
+    @Override
+    public String toString() {
+        return "Martillo{"
+                + "nombre='" + nombre + '\''
+                + ", consumo=" + consumo
+                + ", sujeccion='" + sujeccion + '\''
+                + ", proteccion=" + proteccion
+                + '}';
     }
 
 }
