@@ -63,11 +63,14 @@ public class CiberCompresor implements Serializable {
     }
 
     //METODO PARA MOSTRAR INFORMACION DEL CIBERCOMPRESOR
-    public void mostrarInfo() {
-        System.out.println("CiberCompresor: " + nombre);
-        System.out.println("Consumo: " + consumo);
-        System.out.println("Traccion: " + traccion);
-        System.out.println("Proteccion: " + proteccion);
+    @Override
+    public String toString() {
+        return "CiberCompresor{"
+                + "nombre='" + nombre + '\''
+                + ", consumo=" + consumo
+                + ", traccion='" + traccion + '\''
+                + ", proteccion=" + proteccion
+                + '}';
     }
 
 }
