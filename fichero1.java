@@ -61,14 +61,14 @@ public class CiberExcavadora implements Serializable{
             throw new IllegalArgumentException("Proteccion debe estar entre 0 y 1 ");
         }
 
-    }
-//METODO PARA MOSTRAR INFORMACION DE LA MAQUINA CIBEREXCAVADORA
-    public void mostrarInfo() {
-        System.out.println("Maquina: "+ nombre);
-        System.out.println("Consumo: "+consumo);
-        System.out.println("Traccion: "+traccion);
-        System.out.println("Proteccion: "+proteccion);
-        
+   @Override
+    public String toString() {
+        return "CiberExcavadora{"
+                + "nombre='" + nombre + '\''
+                + ", consumo=" + consumo
+                + ", traccion='" + traccion + '\''
+                + ", proteccion=" + proteccion
+                + '}';
     }
 
 }
