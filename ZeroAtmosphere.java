@@ -1,7 +1,18 @@
 
 package zeroatmospher;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+/**
+ *
+ * @author fani
+ */
 public class ZeroAtmosphere {
     static int alienigenas = 0;
     static String confirmacion="";
@@ -27,6 +38,7 @@ public class ZeroAtmosphere {
                     System.out.println("2.Modificar tripulación o vehículos");
                     System.out.println("3.Iniciar nueva operación");
                     System.out.println("4.Finalizar operación");
+                    System.out.println("5.Ficheros");
                     System.out.println("5.Salir");
                     op = sc.nextLine();
                     val.validarnumero(op);
@@ -53,10 +65,15 @@ public class ZeroAtmosphere {
                 case "5":
                     System.out.println("Saliendo del sistema...");
                     break;
+                case "6":
+                    System.out.println("Información de ficheros");
+                    creacionFicheros();
+                    lecturaFicheros();
+                    break;
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
-        }while(!op.equals("5"));
+        }while(!op.equals("6"));
         
         
       }  
@@ -395,8 +412,74 @@ public static void codigosMineros(){
         }
     }
    }
+
+    public static void creacionFicheros() {
+    try {
+            //CREAMOS OBJETOS DE CADA CLASE 
+            CiberExcavadora ciberexcavadora = new CiberExcavadora("CiberExcavadora-PZK", 4, "ruedas", 0.9);
+            Martillo martillo = new Martillo("Martillo Hidraulico", 230, "manual", 0.3);
+            Pala pala = new Pala("Pala de Excavacion", 3, "aleacion", "pvc");
+            CiberCompresor cibercompresor = new CiberCompresor("Compresor Industrial", 3, "ruedas", 0.6);
+
+            //crear los archivos binarios para cada maquina
+            
+            ObjectOutputStream oos1 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/mov_tierra.dat"));
+            oos1.writeObject(ciberexcavadora);
+            oos1.close();
+
+            ObjectOutputStream oos2 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/martillo.dat"));
+            oos2.writeObject(martillo);
+            oos2.close();
+
+            ObjectOutputStream oos3 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/manual_pala.dat"));
+            oos3.writeObject(pala);
+            oos3.close();
+
+            ObjectOutputStream oos4 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/cibercompresor.dat"));
+            oos4.writeObject(cibercompresor);
+            oos4.close();
+
+            System.out.println("Archivos binarios creados exitosamente.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+    }
+    public static void lecturaFicheros(){
+        try {
+            // Leer los arichvos binarios deserializar los objetos
+
+            //Ciberexcavadora
+            ObjectInputStream ois1 = new ObjectInputStream(new FileInputStream("/Users/fani/Desktop/Binarios/mov_tierra.dat"));
+            CiberExcavadora ciberexcavadora = (CiberExcavadora) ois1.readObject();
+            ois1.close();
+            ciberexcavadora.mostrarInfo();
+
+            //Martillo
+            ObjectInputStream ois2 = new ObjectInputStream(new FileInputStream("/Users/fani/Desktop/Binarios/martillo.dat"));
+            Martillo martillo = (Martillo) ois2.readObject();
+            ois2.close();
+            martillo.mostrarInfo();
+            
+            //Pala
+            ObjectInputStream ois3 = new ObjectInputStream(new FileInputStream("/Users/fani/Desktop/Binarios/Manual_pala.dat"));
+            Pala pala = (Pala) ois3.readObject();
+            ois3.close();
+            pala.mostrarInfo();
+            
+            //Cibercompresor
+            ObjectInputStream ois4 = new ObjectInputStream(new FileInputStream("/Users/fani/Desktop/Binarios/cibercompresor.dat"));
+            CiberCompresor cibercompresor = (CiberCompresor) ois4.readObject();
+            ois4.close();
+            cibercompresor.mostrarInfo();
+            
+            System.out.println("Archivos binarios leidos y objetos restaurados correctamente.");
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            }
+    }
 }
 
-         
-    
 
