@@ -67,11 +67,14 @@ public class Pala implements Serializable {
     }
 //METODO PARA MOSTRAR INFORMACION DE LA MAQUINARIA PALA
 
-    public void mostrarInfo() {
-        System.out.println("Pala: " + nombre);
-        System.out.println("Longitud del mango: " + lonmango + "metros");
-        System.out.println("Material del Metal: " + metal);
-        System.out.println("Proteccion: " + proteccion);
+    @Override
+    public String toString() {
+        return "Pala{"
+                + "nombre='" + nombre + '\''
+                + ", lonmango=" + lonmango
+                + ", metal='" + metal + '\''
+                + ", proteccion='" + proteccion + '\''
+                + '}';
     }
 
 }
