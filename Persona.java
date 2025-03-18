@@ -38,6 +38,14 @@ public class Persona extends Tripulacion {
     public void setAltura(double altura) {
         this.altura = altura;
     }
+
+    public int getEdad(){
+        return edad;
+    }
+    
+    public void setEdad(){
+        this.edad=edad;
+    }
     
     @Override
     public String getCodigo() {
