@@ -13,9 +13,12 @@ public class Martillo implements Serializable {
 
     public Martillo(String nombre, int consumo, String sujeccion, double proteccion) {
         this.nombre = nombre;
-        setConsumo(consumo);  //VALIDAMOS EL RANGO(200-300)
-        setSujeccion(sujeccion);//VALIDAMOS QUE SEA "MANUAL O "CORREA"
-        setProteccion(proteccion);//VALIDAMOS EL RANGO(0-1)
+        try{
+            setConsumo(consumo);  //VALIDAMOS EL RANGO(200-300)
+            setSujeccion(sujeccion);//VALIDAMOS QUE SEA "MANUAL O "CORREA"
+            setProteccion(proteccion);//VALIDAMOS EL RANGO(0-1)
+        }catch(Excepciones e)
+        {System.err.println("Error: "+e);}
     }
 
     public String getNombre() {
@@ -26,12 +29,11 @@ public class Martillo implements Serializable {
         return consumo;
     }
 
-    public void setConsumo(int consumo) {
+    public void setConsumo(int consumo) throws Excepciones{
         if (consumo >= 200 && consumo <= 300) {
             this.consumo = consumo;
-
         } else {
-            throw new IllegalArgumentException("Consumo debe estar entre 200 y 300 kw");
+            throw new Excepciones("Consumo debe estar entre 200 y 300 kw");
         }
     }
 
@@ -39,12 +41,11 @@ public class Martillo implements Serializable {
         return sujeccion;
     }
 
-    public void setSujeccion(String sujeccion) {
+    public void setSujeccion(String sujeccion) throws Excepciones{
         if (sujeccion.equals("manual") || sujeccion.equals("correa")) {
             this.sujeccion = sujeccion;
         } else {
-            throw new IllegalArgumentException("Sujeccion debe ser 'manual' o 'correa'");
-
+            throw new Excepciones("Sujeccion debe ser 'manual' o 'correa'");
         }
     }
 
@@ -52,11 +53,11 @@ public class Martillo implements Serializable {
         return proteccion;
     }
 
-    public void setProteccion(double proteccion) {
+   public void setProteccion(double proteccion) throws Excepciones{
         if (proteccion >= 0 && proteccion <= 1) {
             this.proteccion = proteccion;
         } else {
-            throw new IllegalArgumentException("Proteccion debe estar entre 0 y 1. ");
+            throw new Excepciones("Proteccion debe estar entre 0 y 1. ");
         }
     }
 
