@@ -1,0 +1,133 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class BobInterface {
+
+    private static final int FILAS = 4;  // 4 tipos de objetos
+    private static final int COLUMNAS = 10; // 10 objetos por tipo
+    private static Object[][] memoria = new Object[FILAS][COLUMNAS];
+    private static final String[] ARCHIVOS = {
+        "mov_tierra.dat", "martillo.dat", "manual_pala.dat", "cibercompresor.dat"
+    };
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        // Cargar datos en la matriz
+        for (int i = 0; i < FILAS; i++) {
+            memoria[i] = leerArchivo(ARCHIVOS[i]);
+        }
+
+        boolean salir = false;
+        while (!salir) {
+            mostrarMemoria();
+            System.out.print("\n¿Deseas modificar algún objeto? (sí/no): ");
+            String respuesta = scanner.next().toLowerCase();
+            if (respuesta.equals("si") || respuesta.equals("sí")) {
+                modificarObjeto();
+            } else {
+                salir = true;
+            }
+        }
+
+        // Guardar cambios en los archivos
+        for (int i = 0; i < FILAS; i++) {
+            escribirArchivo(ARCHIVOS[i], memoria[i]);
+        }
+
+        System.out.println("Los cambios han sido guardados. ¡Hasta luego!");
+    }
+
+    // Método para leer los archivos y almacenar los objetos en la matriz
+    private static Object[] leerArchivo(String nombreArchivo) {
+        Object[] objetos = new Object[COLUMNAS]; // Matriz de 10 objetos
+        int index = 0;
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nombreArchivo))) {
+            while (index < COLUMNAS) { // Asegurar que se leen 10 objetos
+                objetos[index] = ois.readObject();
+                index++;
+            }
+        } catch (EOFException e) {
+            System.out.println("Archivo leído completamente: " + nombreArchivo);
+        } catch (Exception e) {
+            System.err.println("Error al leer " + nombreArchivo + ": " + e.getMessage());
+        }
+        return objetos;
+    }
+
+    // Método para escribir la matriz en los archivos
+    private static void escribirArchivo(String nombreArchivo, Object[] objetos) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nombreArchivo))) {
+            for (Object obj : objetos) {
+                oos.writeObject(obj);
+            }
+        } catch (IOException e) {
+            System.err.println("Error al escribir " + nombreArchivo + ": " + e.getMessage());
+        }
+    }
+
+    // Método para mostrar en pantalla la matriz con coordenadas
+    private static void mostrarMemoria() {
+        System.out.println("\n Matriz de objetos en memoria:");
+        for (int i = 0; i < FILAS; i++) {
+            System.out.println("\nTipo: " + ARCHIVOS[i]);
+            for (int j = 0; j < COLUMNAS; j++) {
+                System.out.println("  [" + i + "][" + j + "] → " + memoria[i][j]);
+            }
+        }
+    }
+
+    // Método para modificar un objeto en la matriz
+    private static void modificarObjeto() {
+        System.out.print("Introduce la fila del objeto a modificar (0-3): ");
+        int fila = scanner.nextInt();
+        System.out.print("Introduce la columna del objeto a modificar (0-9): ");
+        int columna = scanner.nextInt();
+
+        if (fila < 0 || fila >= FILAS || columna < 0 || columna >= COLUMNAS) {
+            System.out.println(" Coordenadas inválidas.");
+            return;
+        }
+
+        Object obj = memoria[fila][columna];
+
+        // Permitir modificar atributos 2 al 4 según el tipo de objeto
+        if (obj instanceof CiberExcavadora) {
+            CiberExcavadora ce = (CiberExcavadora) obj;
+            System.out.print("Nuevo consumo (1-5 litros): ");
+            ce.setConsumo(scanner.nextInt());
+            System.out.print("Nueva tracción (ruedas/oruga): ");
+            ce.setTraccion(scanner.next());
+            System.out.print("Nueva protección (0.0 - 1.0): ");
+            ce.setProteccion(scanner.nextDouble());
+        } else if (obj instanceof Martillo) {
+            Martillo m = (Martillo) obj;
+            System.out.print("Nuevo consumo (200-300 Kw): ");
+            m.setConsumo(scanner.nextInt());
+            System.out.print("Nueva sujeción (manual/correa): ");
+            m.setSujeccion(scanner.next());
+            System.out.print("Nueva protección (0.0 - 1.0): ");
+            m.setProteccion(scanner.nextDouble());
+        } else if (obj instanceof Pala) {
+            Pala p = (Pala) obj;
+            System.out.print("Nuevo lonmango (1-5 metros): ");
+            p.setLonmango(scanner.nextInt());
+            System.out.print("Nuevo metal (puro/aleacion): ");
+            p.setMetal(scanner.next());
+            System.out.print("Nueva protección (PVC/vinilo): ");
+            p.setProteccion(scanner.next());
+        } else if (obj instanceof CiberCompresor) {
+            CiberCompresor cc = (CiberCompresor) obj;
+            System.out.print("Nuevo consumo (1-5 litros): ");
+            cc.setConsumo(scanner.nextInt());
+            System.out.print("Nueva tracción (ruedas/oruga): ");
+            cc.setTraccion(scanner.next());
+            System.out.print("Nueva protección (0.0 - 1.0): ");
+            cc.setProteccion(scanner.nextDouble());
+        } else {
+            System.out.println(" Tipo de objeto desconocido.");
+            return;
+        }
+
+        System.out.println(" Objeto actualizado.");
+    }
+}
