@@ -15,9 +15,12 @@ public class Pala implements Serializable {
 
     public Pala(String nombre, int lonmango, String metal, String proteccion) {
         this.nombre = nombre;
-        setLonmango(lonmango); // VALIDAMOS QUE LONMANGO ESTE ENTRE 1 Y 5
-        setMetal(metal); //VALIDAMOS VALORES PURO / ALEACION
-        setProteccion(proteccion);//VALIDAMOS PROTECCION ENTRE 0 Y 1
+        try{
+            setLonmango(lonmango); // VALIDAMOS QUE LONMANGO ESTE ENTRE 1 Y 5
+            setMetal(metal); //VALIDAMOS VALORES PURO / ALEACION
+            setProteccion(proteccion);//VALIDAMOS PROTECCION ENTRE 0 Y 1
+        }catch (Excepciones e)
+        {System.err.println("Error: "+e);}
     }
 
     public String getNombre() {
@@ -28,41 +31,35 @@ public class Pala implements Serializable {
         return lonmango;
     }
 
-    public void setLonmango(int lonmango) {
+    public void setLonmango(int lonmango) throws Excepciones{
         if (lonmango >= 1 && lonmango <= 5) {
             this.lonmango = lonmango;
         } else {
-            throw new IllegalArgumentException("Lonmango debe estar entre 1 y 5");
+            throw new Excepciones("Lonmango debe estar entre 1 y 5");
         }
-
     }
 
     public String getMetal() {
         return metal;
     }
 
-    public void setMetal(String metal) {
+    public void setMetal(String metal) throws Excepciones{
         if (metal.equals("puro") || metal.equals("aleacion")) {
             this.metal = metal;
         } else {
-            throw new IllegalArgumentException("metal debe ser puro o de aleacion");
+            throw new Excepciones("metal debe ser puro o de aleacion");
         }
-        {
-
-        }
-
     }
 
     public String getProteccion() {
         return proteccion;
     }
 
-    public void setProteccion(String proteccion) {
+    public void setProteccion(String proteccion) throws Excepciones{
         if (proteccion.equals("pvc") || proteccion.equals("vinilo")) {
             this.proteccion = proteccion;
-
         } else {
-            throw new IllegalArgumentException("proteccion debe ser 'pvc' o 'vinilo'");
+            throw new Excepciones("proteccion debe ser 'pvc' o 'vinilo'");
         }
     }
 //METODO PARA MOSTRAR INFORMACION DE LA MAQUINARIA PALA
