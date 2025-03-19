@@ -14,9 +14,11 @@ public class CiberCompresor implements Serializable {
 
     public CiberCompresor(String nombre, int consumo, String traccion, double proteccion) {
         this.nombre = nombre;
-        this.consumo = consumo;
-        this.traccion = traccion;
-        this.proteccion = proteccion;
+        try{
+            setConsumo(consumo);
+            setTraccion(traccion);
+            setProteccion(proteccion);
+        }catch(Excepciones e){System.err.println("Error: "+e);}
     }
 
     public String getNombre() {
@@ -27,38 +29,35 @@ public class CiberCompresor implements Serializable {
         return consumo;
     }
 
-    public void setConsumo(int consumo) {
+    public void setConsumo(int consumo) throws Excepciones{
         if (consumo >= 1 && consumo <= 5) {
             this.consumo = consumo;
-
         } else {
-            throw new IllegalArgumentException("consumo debe estar entre 1 y 5 litros.");
+            throw new Excepciones("consumo debe estar entre 1 y 5 litros.");
         }
-
-    }
+    }    
 
     public String getTraccion() {
         return traccion;
     }
 
-    public void setTraccion(String traccion) {
+    public void setTraccion(String traccion) throws Excepciones{
         if (traccion.equals("ruedas") || traccion.equals("oruga")) {
             this.traccion = traccion;
         } else {
-            throw new IllegalArgumentException("Traccion debe ser ruedas o oruga");
+            throw new Excepciones("Traccion debe ser ruedas o oruga");
         }
-
     }
 
     public double getProteccion() {
         return proteccion;
     }
 
-    public void setProteccion(double proteccion) {
+    public void setProteccion(double proteccion) throws Excepciones{
         if (proteccion >= 0 || proteccion <= 1) {
             this.proteccion = proteccion;
         } else {
-            throw new IllegalArgumentException("Proteccion debe estar entre 0 y 1");
+            throw new Excepciones("Proteccion debe estar entre 0 y 1");
         }
     }
 
