@@ -1,0 +1,48 @@
+public class MemoriaAltaVelocidad {
+
+    private final Object[][] memoria; //MATRIZ DE 4 FILAS Y 10 COLUMNAS
+
+    // CONSTRUTOR 
+    public MemoriaAltaVelocidad() {
+        memoria = new Object[4][10];
+    }
+
+    //METODO PARA ALMACENAR UN OBJETO EN LA MATRIZ 
+    public void almacenar(int fila, int columna, Object objeto) {
+        if (fila >= 0 && fila < 4 && columna >= 0 && columna < 10) {
+            memoria[fila][columna] = objeto;
+
+        } else {
+            System.out.println("Indices fuera de rango");
+        }
+    }
+
+    //METODO PARA OBTENER UN OBJETO DE LA MATRIZ
+    public Object obtener(int fila, int columna) {
+        if (fila >= 0 && fila < 4 && columna >= 0 && columna < 10) {
+            return memoria[fila][columna];
+        } else {
+            System.out.println("Indices fuera de rango");
+            return null;
+
+        }
+    }
+
+    //METODO PARA MOSTRAR TODOS LOS OBJETOS EN LA MEMORIA
+    public void mostrarMemoria() {
+        for (int i = 0; i < 4; i++) {
+            System.out.println("Fila" + (i + 1) + ":");
+            for (int j = 0; j < 10; j++) {
+                if (memoria[i][j] != null) {
+                    System.out.println("Columna " + (j + 1) + ": " + memoria[i][j].toString());
+
+                } else {
+                    System.out.println("Columna " + (j + 1) + ": Vacio");
+                }
+
+            }
+
+        }
+    }
+
+}
