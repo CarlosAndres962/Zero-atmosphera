@@ -3,19 +3,24 @@ import java.util.Scanner;
 
 public class BobInterface {
 
-    private static final int FILAS = 4;  // 4 tipos de objetos
-    private static final int COLUMNAS = 10; // 10 objetos por tipo
-    private static Object[][] memoria = new Object[FILAS][COLUMNAS];
+    private static final int FILAS = 4;
+    private static final int COLUMNAS = 10;
+    private static final Object[][] memoria = new Object[FILAS][COLUMNAS];
     private static final String[] ARCHIVOS = {
-        "mov_tierra.dat", "martillo.dat", "manual_pala.dat", "cibercompresor.dat"
+            "C:\\AA_pruebas\\mov_tierra.dat",
+            "C:\\AA_pruebas\\martillo.dat",
+            "C:\\AA_pruebas\\manual_pala.dat",
+            "C:\\AA_pruebas\\cibercompresor.dat"
     };
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        // Cargar datos en la matriz
-        for (int i = 0; i < FILAS; i++) {
-            memoria[i] = leerArchivo(ARCHIVOS[i]);
-        }
+        BlueStarIV.generarArchivosBinarios();
+        // Leer archivos y almacenar en la matriz de BobInterface
+        BlueStarIV.leerArchivo(ARCHIVOS[0], 0, memoria);
+        BlueStarIV.leerArchivo(ARCHIVOS[1], 1, memoria);
+        BlueStarIV.leerArchivo(ARCHIVOS[2], 2, memoria);
+        BlueStarIV.leerArchivo(ARCHIVOS[3], 3, memoria);
 
         boolean salir = false;
         while (!salir) {
@@ -28,44 +33,11 @@ public class BobInterface {
                 salir = true;
             }
         }
-
-        // Guardar cambios en los archivos
-        for (int i = 0; i < FILAS; i++) {
-            escribirArchivo(ARCHIVOS[i], memoria[i]);
-        }
+        BlueStarIV.actualizarArchivosBinarios(memoria, ARCHIVOS);
 
         System.out.println("Los cambios han sido guardados. ¡Hasta luego!");
     }
 
-    // Método para leer los archivos y almacenar los objetos en la matriz
-    private static Object[] leerArchivo(String nombreArchivo) {
-        Object[] objetos = new Object[COLUMNAS]; // Matriz de 10 objetos
-        int index = 0;
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nombreArchivo))) {
-            while (index < COLUMNAS) { // Asegurar que se leen 10 objetos
-                objetos[index] = ois.readObject();
-                index++;
-            }
-        } catch (EOFException e) {
-            System.out.println("Archivo leído completamente: " + nombreArchivo);
-        } catch (Exception e) {
-            System.err.println("Error al leer " + nombreArchivo + ": " + e.getMessage());
-        }
-        return objetos;
-    }
-
-    // Método para escribir la matriz en los archivos
-    private static void escribirArchivo(String nombreArchivo, Object[] objetos) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nombreArchivo))) {
-            for (Object obj : objetos) {
-                oos.writeObject(obj);
-            }
-        } catch (IOException e) {
-            System.err.println("Error al escribir " + nombreArchivo + ": " + e.getMessage());
-        }
-    }
-
-    // Método para mostrar en pantalla la matriz con coordenadas
     private static void mostrarMemoria() {
         System.out.println("\n Matriz de objetos en memoria:");
         for (int i = 0; i < FILAS; i++) {
@@ -76,7 +48,6 @@ public class BobInterface {
         }
     }
 
-    // Método para modificar un objeto en la matriz
     private static void modificarObjeto() {
         System.out.print("Introduce la fila del objeto a modificar (0-3): ");
         int fila = scanner.nextInt();
@@ -104,7 +75,7 @@ public class BobInterface {
             System.out.print("Nuevo consumo (200-300 Kw): ");
             m.setConsumo(scanner.nextInt());
             System.out.print("Nueva sujeción (manual/correa): ");
-            m.setSujeccion(scanner.next());
+            m.setSujecion(scanner.next());
             System.out.print("Nueva protección (0.0 - 1.0): ");
             m.setProteccion(scanner.nextDouble());
         } else if (obj instanceof Pala) {
