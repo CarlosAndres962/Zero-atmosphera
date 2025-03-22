@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.Random;
 
+//ESTA CLASE HAY QUE ELIMINARLA, EL CONTENIDO YA ESTÁ INTEGRADO EN LA CLASE BLUESTARIV
+
 public class Main {
 
     public static void main(String[] args) {
