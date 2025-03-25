@@ -1,27 +1,17 @@
 
 package zeroatmospher;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-/**
- *
- * @author fani
- */
+import java.io.*;
+import java.util.*;
 public class ZeroAtmosphere {
+
     static int alienigenas = 0;
-    static String confirmacion="";
-   
+    static String confirmacion = "";
+
     static int cantidadSoldados = 0; //Inicialmente en 0, se actualizará dinámicamente
     static int cantidadMineros = 0;// Inicialmente en 0, se actualizará dinámicamente
-    static ArrayList<Alienigena>alienArray = new ArrayList<>(); // Vector (array) de trabajos inicializado vacío.
-    static ArrayList<Soldados> solArray = new ArrayList<>();
-    static ArrayList<Mineros> minArray = new ArrayList<>();
+    static ArrayList<alienigena>alienArray = new ArrayList<>(); // Vector (array) de trabajos inicializado vacío.
+    static ArrayList<Soldado> solArray = new ArrayList<>();
+    static ArrayList<Minero> minArray = new ArrayList<>();
     static Validador val=new Validador();
     
     static Scanner sc = new Scanner(System.in);
@@ -33,12 +23,11 @@ public class ZeroAtmosphere {
         String op="";
             do{
                 try{
-                    System.out.println("\n--- Menú Principal ---");
+                    System.out.println("\n--- Menu Principal ---");
                     System.out.println("1.Estado completo de la BlueStar-IV");
-                    System.out.println("2.Modificar tripulación o vehículos");
-                    System.out.println("3.Iniciar nueva operación");
-                    System.out.println("4.Finalizar operación");
-                    System.out.println("5.Ficheros");
+                    System.out.println("2.Modificar tripulacion o vehiculos");
+                    System.out.println("3.Iniciar nueva operacion");
+                    System.out.println("4.Finalizar operacion");
                     System.out.println("5.Salir");
                     op = sc.nextLine();
                     val.validarnumero(op);
@@ -53,7 +42,7 @@ public class ZeroAtmosphere {
                     break;
                 case "3":
                     if (operacionEnCurso) {
-                        System.out.println("No puedes iniciar una nueva operación mientras hay una en curso.");
+                        System.out.println("No puedes iniciar una nueva operacion mientras hay una en curso.");
                     } else {
                         iniciarOperacion();
                        break;
@@ -65,15 +54,10 @@ public class ZeroAtmosphere {
                 case "5":
                     System.out.println("Saliendo del sistema...");
                     break;
-                case "6":
-                    System.out.println("Información de ficheros");
-                    creacionFicheros();
-                    lecturaFicheros();
-                    break;
                 default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
+                    System.out.println("Opcion no valida. Intente de nuevo.");
             }
-        }while(!op.equals("6"));
+        }while(!op.equals("5"));
         
         
       }  
@@ -84,10 +68,10 @@ public static void mostrarEstadoNave() {
         if (operacionEnCurso) {
             // Mostrar detalles de la operación en curso
             System.out.println("\n--- Estado Actual de la Nave ---");
-            System.out.println("Operación en curso...");
-            
-            System.out.println("Detalles de la operación...");
-            System.out.println("Número de alienígenas: " + alienigenas);
+            System.out.println("Operacion en curso...");
+  
+            System.out.println("Detalles de la operacion...");
+            System.out.println("Número de alienigenas: " + alienigenas);
             System.out.println("Número de soldados: " + cantidadSoldados);
             System.out.println("Número de mineros: " + cantidadMineros+"\n");
             
@@ -103,12 +87,12 @@ public static void mostrarEstadoNave() {
         
         } else {
             System.out.println("\n--- Estado Actual de la Nave ---");
-            System.out.println("No hay operación en curso.");
+            System.out.println("No hay operacion en curso.");
         }
     }
 
 public static void iniciarOperacion(){
-    System.out.println("Introduce el número de alienígenas:");
+    System.out.println("Introduce el numero de alienigenas:");
     String ali=sc.nextLine();
       
     try{
@@ -127,23 +111,23 @@ public static void iniciarOperacion(){
         crearMineros();  
         crearAlienigenas();
     
-        System.out.println("\n--- Información genérica de la operación ---");
+        System.out.println("\n--- Informacion generica de la operacion ---");
         nombresSoldados(solArray);
         nombresMineros(minArray);
-        System.out.println("alienígenas esperados: "+ alienigenas);
+        System.out.println("alienigenas esperados: "+ alienigenas);
         System.out.println("LAURA, A LA ESPERA DE CREAR TRIPULACION");
         System.out.println("AEROCARS, A LA ESPERA DE CREAR TRIPULACION");
     
-        System.out.println("\n--- Códigos  ---");
+        System.out.println("\n--- Codigos  ---");
         codigosAlienigenas();
         codigosMineros();
         codigosSoldados();
         operacionEnCurso = false; // Ahora no hay operación en curso
-        System.out.println("\n--- Costes de la operación ---");
+        System.out.println("\n--- Costes de la operacion ---");
         mostrarCostesOperacion();
         
         try{
-            System.out.println("¿Deseas llevar a cabo la operación con estos costes? (S/N): ");
+            System.out.println("¿Deseas llevar a cabo la operacion con estos costes? (S/N): ");
             confirmacion = sc.nextLine().toLowerCase();
             val.validaChar(confirmacion);
         }catch (Excepciones e){
@@ -166,9 +150,9 @@ public static void finalizarOperacion() {
     if (operacionEnCurso) {
         operacionEnCurso = false; // Marcar que la operación ha finalizado
         Codigo.reiniciarContadores(); // Reiniciar los contadores de códigos
-        System.out.println("Operación finalizada");
+        System.out.println("Operacion finalizada");
     } else {
-        System.out.println("No hay ninguna operación en curso para finalizar.");
+        System.out.println("No hay ninguna operacion en curso para finalizar.");
     }
 }
 private static void mostrarCostesOperacion() {
@@ -184,10 +168,10 @@ private static void mostrarCostesOperacion() {
     int costeCombustible = numeroAerocars * consumoPorDia * DIAS_OPERACION;
     int costeTotal = costeTripulacion + costeCombustible;
 
-    System.out.println("Duración de la misión: " + DIAS_OPERACION + " días");
-    System.out.println("Coste total tripulación: " + costeTripulacion + " yurs");
+    System.out.println("Duracion de la mision: " + DIAS_OPERACION + " dias");
+    System.out.println("Coste total tripulacion: " + costeTripulacion + " yurs");
     System.out.println("Coste total combustible: " + costeCombustible + " yurs");
-    System.out.println("Coste final de la operación: " + costeTotal + " yurs\n");
+    System.out.println("Coste final de la operacion: " + costeTotal + " yurs\n");
 }
 public static char asignarSexoAleatorio(){
     int aleatorio = (int) (Math.random() * 2); // Asignar sexo aleatorio (0: Hombre, 1: Mujer)
@@ -201,8 +185,8 @@ public static char asignarSexoAleatorio(){
 }
    
 public static void crearSoldados(){
-    String[] nombresMasculinos = {"Juan", "Carlos", "Miguel", "Luis", "Pedro", "José", "Antonio"};
-    String[] nombresFemeninos = {"María", "Ana", "Laura", "Carmen", "Sofía", "Isabel", "Elena"};
+    String[] nombresMasculinos = {"Juan", "Carlos", "Miguel", "Luis", "Pedro", "Jose", "Antonio"};
+    String[] nombresFemeninos = {"Kiara", "Ana", "Laura", "Carmen", "Sofia", "Isabel", "Elena"};
         
     int contadorMasculinos = 0; 
     int contadorFemeninos = 0; //actua como índice para acceder a un elemento específico del array nombresFemeninos
@@ -226,13 +210,13 @@ public static void crearSoldados(){
         }
      
         // Generar código único para el soldado
-        Soldados soldado = new Soldados((int) (Math.random() * 10) + 1, nombreSoldado, sexoSoldado);
+        Soldado soldado = new Soldado((int) (Math.random() * 10) + 1, nombreSoldado, sexoSoldado);
         solArray.add(soldado); //Almacenar el objeto en el array
     }
  }      
 public static void crearMineros(){
-    String[] nombresMasculinos = {"Alejandro", "Andrés", "Diego", "Fernando", "Gabriel","Héctor", "Javier"};
-    String[] nombresFemeninos = {"Adriana", "Beatriz", "Clara", "Diana", "Elena","Gabriela","Inés"};
+    String[] nombresMasculinos = {"Alejandro", "Andres", "Diego", "Fernando", "Gabriel","Hector", "Javier"};
+    String[] nombresFemeninos = {"Adriana", "Beatriz", "Clara", "Diana", "Elena","Gabriela","Mayra"};
         
     int contadorMasculinos = 0; 
     int contadorFemeninos = 0; //actua como índice para acceder a un elemento específico del array nombresFemeninos
@@ -255,7 +239,7 @@ public static void crearMineros(){
             }
         }
    // Generar código único para el minero
-        Mineros minero = new Mineros((int) (Math.random() * (65 - 18 + 1)) + 18, nombreMinero, sexoMinero);
+        Minero minero = new Minero((int) (Math.random() * (65 - 18 + 1)) + 18, nombreMinero, sexoMinero);
         minArray.add(minero); 
     }        
  }
@@ -274,7 +258,7 @@ public static void crearAlienigenas() {
             invisibilidad = (int) (Math.random() * 101);
         }
 
-        Alienigena alien; //declaramos una variable llamada alien que puede almacenar un objeto de tipo Alienigena.
+        alienigena alien; //declaramos una variable llamada alien que puede almacenar un objeto de tipo Alienigena.
             if (tipo.equals("Nomun")) {
                 alien = new Nomun(autotraslacion);
             } else {
@@ -284,17 +268,17 @@ public static void crearAlienigenas() {
     }
    }
  
-public static void listaCompletaSoldados(ArrayList<Soldados> soldados) {
+public static void listaCompletaSoldados(ArrayList<Soldado> soldados) {
     if (soldados == null || soldados.isEmpty()) {
         System.out.println("No hay soldados para mostrar.");
         return; // Salir del método si no hay soldados o si la lista es nula
     }
 
     // Imprimir encabezados
-    System.out.println(String.format("%-10s %-5s %-10s %-12s", "Nombre", "Sexo", "Código", "Graduación"));
+    System.out.println(String.format("%-10s %-5s %-10s %-12s", "Nombre", "Sexo", "Codigo", "Graduacion"));
 
     // Imprimir cada soldado
-    for (Soldados soldado : soldados) {
+    for (Soldado soldado : soldados) {
         if (soldado != null) { // Verifica que el objeto no sea nulo
             System.out.println(soldado.toString());
         } else {
@@ -303,17 +287,17 @@ public static void listaCompletaSoldados(ArrayList<Soldados> soldados) {
     }
 }
  
-public static void listaCompletaMineros(ArrayList<Mineros> mineros) {
+public static void listaCompletaMineros(ArrayList<Minero> mineros) {
     if (mineros == null || mineros.isEmpty()) {
         System.out.println("No hay soldados para mostrar.");
         return; // Salir del método si no hay soldados o si la lista es nula
     }
 
     // Imprimir encabezados
-    System.out.println(String.format("%-10s %-5s %-10s %-12s", "Nombre", "Sexo", "Código", "Graduación"));
+    System.out.println(String.format("%-10s %-5s %-10s %-12s", "Nombre", "Sexo", "Codigo", "Graduacion"));
 
     // Imprimir cada soldado
-    for (Mineros minero : mineros) {
+    for (Minero minero : mineros) {
         if (minero != null) { // Verifica que el objeto no sea nulo
             System.out.println(minero.toString());
         } else {
@@ -322,13 +306,13 @@ public static void listaCompletaMineros(ArrayList<Mineros> mineros) {
     }
 }
 
-public static void listaCompletaAliens(ArrayList<Alienigena> alienigenasArray){
+public static void listaCompletaAliens(ArrayList<alienigena> alienigenasArray){
      if (alienigenasArray == null || alienigenasArray.isEmpty()) {
-        System.out.println("No hay alienígenas para mostrar.");
+        System.out.println("No hay alienigenas para mostrar.");
         return;
     }
 
-    for (Alienigena alien : alienigenasArray) {
+    for (alienigena alien : alienigenasArray) {
         if (alien != null) {
             System.out.println(alien.toString());
         } else {
@@ -337,7 +321,7 @@ public static void listaCompletaAliens(ArrayList<Alienigena> alienigenasArray){
     }
 }
 
-public static void nombresSoldados(ArrayList<Soldados> soldados) {
+public static void nombresSoldados(ArrayList<Soldado> soldados) {
      if (soldados == null || soldados.isEmpty()) {
         System.out.println("No hay soldados para mostrar.");
         return;
@@ -345,7 +329,7 @@ public static void nombresSoldados(ArrayList<Soldados> soldados) {
 
     System.out.println("\nListado de nombres de soldados:");
     
-    for (Soldados soldado : soldados) {
+    for (Soldado soldado : soldados) {
         if (soldado != null) {
             System.out.println(soldado.getNombre());
         } else {
@@ -354,7 +338,7 @@ public static void nombresSoldados(ArrayList<Soldados> soldados) {
     }
 }
 
-public static void nombresMineros(ArrayList<Mineros> mineros) {
+public static void nombresMineros(ArrayList<Minero> mineros) {
       if (mineros == null || mineros.isEmpty()) {
         System.out.println("No hay soldados para mostrar.");
         return;
@@ -362,7 +346,7 @@ public static void nombresMineros(ArrayList<Mineros> mineros) {
 
     System.out.println("\nListado de nombres de soldados:");
     
-    for (Mineros minero : mineros) {
+    for (Minero minero : mineros) {
         if (minero != null) {
             System.out.println(minero.getNombre());
         } else {
@@ -372,12 +356,12 @@ public static void nombresMineros(ArrayList<Mineros> mineros) {
 }
 
 public static void codigosAlienigenas(){
-    System.out.println("\nCódigos de los Alienígenas:");
+    System.out.println("\nCodigos de los Alienigenas:");
      if(alienArray == null || alienArray.isEmpty()){
-         System.out.println("No hay alienígenas asignados.");
+         System.out.println("No hay alienigenas asignados.");
         return; // Salir del método si la lista es nula o está vacía
      }
-     for (Alienigena alien : alienArray) {
+     for (alienigena alien : alienArray) {
         if (alien != null) {
             System.out.println(alien.getCodigo()); // Mostrar código del minero
         }
@@ -385,13 +369,13 @@ public static void codigosAlienigenas(){
 }
 
 public static void codigosSoldados(){
-     System.out.println("\nCódigos de los Soldados:");
+     System.out.println("\nCodigos de los Soldados:");
      
      if(solArray == null || solArray.isEmpty()){
          System.out.println("No hay soldados asignados.");
         return; // Salir del método si la lista es nula o está vacía
      }
-     for (Soldados soldado : solArray) {
+     for (Soldado soldado : solArray) {
         if (soldado != null) {
             System.out.println(soldado.getCodigo()); // Mostrar código del minero
         }
@@ -399,87 +383,21 @@ public static void codigosSoldados(){
 }
 
 public static void codigosMineros(){
-    System.out.println("\nCódigos de los Mineros:");
+    System.out.println("\nCodigos de los Mineros:");
     
     if (minArray == null || minArray.isEmpty()) {
         System.out.println("No hay mineros asignados.");
         return; // Salir del método si la lista es nula o está vacía
     }
 
-    for (Mineros minero : minArray) {
+    for (Minero minero : minArray) {
         if (minero != null) {
             System.out.println(minero.getCodigo()); // Mostrar código del minero
         }
     }
    }
 
-    public static void creacionFicheros() {
-    try {
-            //CREAMOS OBJETOS DE CADA CLASE 
-            CiberExcavadora ciberexcavadora = new CiberExcavadora("CiberExcavadora-PZK", 4, "ruedas", 0.9);
-            Martillo martillo = new Martillo("Martillo Hidraulico", 230, "manual", 0.3);
-            Pala pala = new Pala("Pala de Excavacion", 3, "aleacion", "pvc");
-            CiberCompresor cibercompresor = new CiberCompresor("Compresor Industrial", 3, "ruedas", 0.6);
-
-            //crear los archivos binarios para cada maquina
-            
-            ObjectOutputStream oos1 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/mov_tierra.dat"));
-            oos1.writeObject(ciberexcavadora);
-            oos1.close();
-
-            ObjectOutputStream oos2 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/martillo.dat"));
-            oos2.writeObject(martillo);
-            oos2.close();
-
-            ObjectOutputStream oos3 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/manual_pala.dat"));
-            oos3.writeObject(pala);
-            oos3.close();
-
-            ObjectOutputStream oos4 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/cibercompresor.dat"));
-            oos4.writeObject(cibercompresor);
-            oos4.close();
-
-            System.out.println("Archivos binarios creados exitosamente.");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-    }
-    public static void lecturaFicheros(){
-        try {
-            // Leer los arichvos binarios deserializar los objetos
-
-            //Ciberexcavadora
-            ObjectInputStream ois1 = new ObjectInputStream(new FileInputStream("/Users/fani/Desktop/Binarios/mov_tierra.dat"));
-            CiberExcavadora ciberexcavadora = (CiberExcavadora) ois1.readObject();
-            ois1.close();
-            ciberexcavadora.mostrarInfo();
-
-            //Martillo
-            ObjectInputStream ois2 = new ObjectInputStream(new FileInputStream("/Users/fani/Desktop/Binarios/martillo.dat"));
-            Martillo martillo = (Martillo) ois2.readObject();
-            ois2.close();
-            martillo.mostrarInfo();
-            
-            //Pala
-            ObjectInputStream ois3 = new ObjectInputStream(new FileInputStream("/Users/fani/Desktop/Binarios/Manual_pala.dat"));
-            Pala pala = (Pala) ois3.readObject();
-            ois3.close();
-            pala.mostrarInfo();
-            
-            //Cibercompresor
-            ObjectInputStream ois4 = new ObjectInputStream(new FileInputStream("/Users/fani/Desktop/Binarios/cibercompresor.dat"));
-            CiberCompresor cibercompresor = (CiberCompresor) ois4.readObject();
-            ois4.close();
-            cibercompresor.mostrarInfo();
-            
-            System.out.println("Archivos binarios leidos y objetos restaurados correctamente.");
-
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            }
-    }
 }
+
 
 
