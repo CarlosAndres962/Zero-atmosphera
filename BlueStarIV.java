@@ -132,40 +132,43 @@ public class BlueStarIV {
         }
     }
 
-    private static void modificarObjeto(Object obj, Scanner scanner) {
-        if (obj instanceof CiberExcavadora) {
-            CiberExcavadora exc = (CiberExcavadora) obj;
-            System.out.println("Nuevo consumo (1-5):");
-            exc.setConsumo(scanner.nextInt());
-            System.out.println("Nueva tracción (ruedas/oruga):");
-            exc.setTraccion(scanner.next());
-            System.out.println("Nueva protección (0-1):");
-            exc.setProteccion(scanner.nextDouble());
-        } else if (obj instanceof Martillo) {
-            Martillo mart = (Martillo) obj;
-            System.out.println("Nuevo consumo (200-300):");
-            mart.setConsumo(scanner.nextInt());
-            System.out.println("Nueva sujeción (manual/correa):");
-            mart.setSujecion(scanner.next());
-            System.out.println("Nueva protección (0-1):");
-            mart.setProteccion(scanner.nextDouble());
-        } else if (obj instanceof Pala) {
-            Pala pala = (Pala) obj;
-            System.out.println("Nueva longitud de mango (1-5):");
-            pala.setLonmango(scanner.nextInt());
-            System.out.println("Nuevo metal (puro/aleacion):");
-            pala.setMetal(scanner.next());
-            System.out.println("Nueva protección (PVC/vinilo):");
-            pala.setProteccion(scanner.next());
-        } else if (obj instanceof CiberCompresor) {
-            CiberCompresor comp = (CiberCompresor) obj;
-            System.out.println("Nuevo consumo (1-5):");
-            comp.setConsumo(scanner.nextInt());
-            System.out.println("Nueva tracción (ruedas/oruga):");
-            comp.setTraccion(scanner.next());
-            System.out.println("Nueva protección (0-1):");
-            comp.setProteccion(scanner.nextDouble());
+    private static void modificarObjeto(Object obj) {
+        Scanner scanner = new Scanner(System.in);
+        try{
+            if (obj instanceof CiberExcavadora) {
+                CiberExcavadora exc = (CiberExcavadora) obj;
+                System.out.println("Nuevo consumo (1-5):");
+                exc.setConsumo(scanner.nextInt());
+                System.out.println("Nueva tracción (ruedas/oruga):");
+                exc.setTraccion(scanner.next());
+                System.out.println("Nueva protección (0-1):");
+                exc.setProteccion(scanner.nextDouble());
+            } else if (obj instanceof Martillo) {
+                Martillo mart = (Martillo) obj;
+                System.out.println("Nuevo consumo (200-300):");
+                mart.setConsumo(scanner.nextInt());
+                System.out.println("Nueva sujeción (manual/correa):");
+                mart.setSujeccion(scanner.next());
+                System.out.println("Nueva protección (0-1):");
+                mart.setProteccion(scanner.nextDouble());
+            } else if (obj instanceof Pala) {
+                Pala pala = (Pala) obj;
+                System.out.println("Nueva longitud de mango (1-5):");
+                pala.setLonmango(scanner.nextInt());
+                System.out.println("Nuevo metal (puro/aleacion):");
+                pala.setMetal(scanner.next());
+                System.out.println("Nueva protección (PVC/vinilo):");
+                pala.setProteccion(scanner.next());
+            } else if (obj instanceof CiberCompresor) {
+                CiberCompresor comp = (CiberCompresor) obj;
+                System.out.println("Nuevo consumo (1-5):");
+                comp.setConsumo(scanner.nextInt());
+                System.out.println("Nueva tracción (ruedas/oruga):");
+                comp.setTraccion(scanner.next());
+                System.out.println("Nueva protección (0-1):");
+                comp.setProteccion(scanner.nextDouble());
         }
+        }catch (Excepciones e){System.err.println(e);}
     }
 
     public static void actualizarArchivosBinarios(Object[][] memoria, String[] archivos) {
