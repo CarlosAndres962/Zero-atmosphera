@@ -43,11 +43,12 @@ public class CiberExcavadora implements Serializable{
         return traccion;
     }
 
-    public void setConsumo(int consumo) throws Excepciones{
-        if (consumo >= 1 && consumo <= 5) {
-            this.consumo = consumo;
+    public void setTraccion(String traccion) throws Excepciones{
+        if (traccion.equals("ruedas") || traccion.equals("oruga")) {
+            this.traccion = traccion;
+
         } else {
-            throw new Excepciones("Consumo debe estar entre 1 y 5");
+            throw new Excepciones("Traccion debe ser 'ruedas' u 'oruga'.");
         }
     }
 
