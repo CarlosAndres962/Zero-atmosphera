@@ -60,44 +60,46 @@ public class BobInterface {
         }
 
         Object obj = memoria[fila][columna];
-
-        // Permitir modificar atributos 2 al 4 según el tipo de objeto
-        if (obj instanceof CiberExcavadora) {
-            CiberExcavadora ce = (CiberExcavadora) obj;
-            System.out.print("Nuevo consumo (1-5 litros): ");
-            ce.setConsumo(scanner.nextInt());
-            System.out.print("Nueva tracción (ruedas/oruga): ");
-            ce.setTraccion(scanner.next());
-            System.out.print("Nueva protección (0.0 - 1.0): ");
-            ce.setProteccion(scanner.nextDouble());
-        } else if (obj instanceof Martillo) {
-            Martillo m = (Martillo) obj;
-            System.out.print("Nuevo consumo (200-300 Kw): ");
-            m.setConsumo(scanner.nextInt());
-            System.out.print("Nueva sujeción (manual/correa): ");
-            m.setSujecion(scanner.next());
-            System.out.print("Nueva protección (0.0 - 1.0): ");
-            m.setProteccion(scanner.nextDouble());
-        } else if (obj instanceof Pala) {
-            Pala p = (Pala) obj;
-            System.out.print("Nuevo lonmango (1-5 metros): ");
-            p.setLonmango(scanner.nextInt());
-            System.out.print("Nuevo metal (puro/aleacion): ");
-            p.setMetal(scanner.next());
-            System.out.print("Nueva protección (PVC/vinilo): ");
-            p.setProteccion(scanner.next());
-        } else if (obj instanceof CiberCompresor) {
-            CiberCompresor cc = (CiberCompresor) obj;
-            System.out.print("Nuevo consumo (1-5 litros): ");
-            cc.setConsumo(scanner.nextInt());
-            System.out.print("Nueva tracción (ruedas/oruga): ");
-            cc.setTraccion(scanner.next());
-            System.out.print("Nueva protección (0.0 - 1.0): ");
-            cc.setProteccion(scanner.nextDouble());
-        } else {
-            System.out.println(" Tipo de objeto desconocido.");
-            return;
-        }
+        
+        try{
+            // Permitir modificar atributos 2 al 4 según el tipo de objeto
+            if (obj instanceof CiberExcavadora) {
+                CiberExcavadora ce = (CiberExcavadora) obj;
+                System.out.print("Nuevo consumo (1-5 litros): ");
+                ce.setConsumo(scanner.nextInt());
+                System.out.print("Nueva tracción (ruedas/oruga): ");
+                ce.setTraccion(scanner.next());
+                System.out.print("Nueva protección (0.0 - 1.0): ");
+                ce.setProteccion(scanner.nextDouble());
+            } else if (obj instanceof Martillo) {
+                Martillo m = (Martillo) obj;
+                System.out.print("Nuevo consumo (200-300 Kw): ");
+                m.setConsumo(scanner.nextInt());
+                System.out.print("Nueva sujeción (manual/correa): ");
+                m.setSujeccion(scanner.next());
+                System.out.print("Nueva protección (0.0 - 1.0): ");
+                m.setProteccion(scanner.nextDouble());
+            } else if (obj instanceof Pala) {
+                Pala p = (Pala) obj;
+                System.out.print("Nuevo lonmango (1-5 metros): ");
+                p.setLonmango(scanner.nextInt());
+                System.out.print("Nuevo metal (puro/aleacion): ");
+                p.setMetal(scanner.next());
+                System.out.print("Nueva protección (PVC/vinilo): ");
+                p.setProteccion(scanner.next());
+            } else if (obj instanceof CiberCompresor) {
+                CiberCompresor cc = (CiberCompresor) obj;
+                System.out.print("Nuevo consumo (1-5 litros): ");
+                cc.setConsumo(scanner.nextInt());
+                System.out.print("Nueva tracción (ruedas/oruga): ");
+                cc.setTraccion(scanner.next());
+                System.out.print("Nueva protección (0.0 - 1.0): ");
+                cc.setProteccion(scanner.nextDouble());
+            } else {
+                System.out.println(" Tipo de objeto desconocido.");
+                return;
+            }
+            }catch (Excepciones e){System.err.println(e);}
 
         System.out.println(" Objeto actualizado.");
     }
