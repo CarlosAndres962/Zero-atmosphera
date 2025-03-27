@@ -3,7 +3,8 @@ package zeroatmospher;
 
 public class Nomun extends Alienigena {
 // Atriutos
-    private double autotraslacion;  
+    private double autotraslacion; 
+    int nrandom;
  //constructor   
     public Nomun(double autotraslacion) {
         this.autotraslacion=autotraslacion;
@@ -31,15 +32,17 @@ public class Nomun extends Alienigena {
     @Override
     public String Comen() {
         if (randomCome() == 1) {
+            nrandom=1;
             return "El alienigena esta comiendo";
         } else {
+            nrandom=0;
             return "El alienigena no esta comiendo";
         }
     }
 
     @Override
     public String Atacan() {
-        if (randomCome()==0) {
+        if (nrandom==0) {
             return "El alienigena esta atacando";
             }
         return "El alienigena no esta atacando";
