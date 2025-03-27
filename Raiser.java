@@ -10,6 +10,7 @@
  */
 public class Raiser extends Alienigena{
      public int invisibilidad;
+     int nrandom;
 
      public Raiser(int invisibilidad) {
         this.invisibilidad = invisibilidad;
@@ -31,15 +32,17 @@ public class Raiser extends Alienigena{
     @Override
     public String Comen() {
         if (randomCome() == 1) {
+            nrandom=1;
             return "El alienigena esta comiendo";
         } else {
+            nrandom=0;
             return "El alienigena no esta comiendo";
         }
     }
 
     @Override
     public String Atacan() {
-        if (randomCome()==0) {
+        if (nrandom==0) {
             return "El alienigena esta atacando";
             }
         return "El alienigena no esta atacando";
