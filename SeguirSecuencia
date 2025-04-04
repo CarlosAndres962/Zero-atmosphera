@@ -38,9 +38,10 @@ public class SeguirSecuencia extends JFrame implements ActionListener {
         setTitle("Seguir la Secuencia"); // Título de la ventana. setTitle() es un método de la clase JFrame.
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Establece la operación de cierre de la ventana. setDefaultCloseOperation() método de la clase JFrame.
 
-        
+       
         // Panel para la imagen de fondo.
-        JPanel panelFondo = new JPanel() { 
+        JPanel panelFondo = new JPanel(new BorderLayout())  { 
+        
             BufferedImage backgroundImage = null; //BufferedImage clase q representa imag en memoria.
 
             @Override
@@ -57,7 +58,7 @@ public class SeguirSecuencia extends JFrame implements ActionListener {
                 g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this); // Dibuja la imagen de fondo en el panel.
             }
         };
-        
+   
 
         panelFondo.setLayout(null); // establece el administrador de diseño (layout manager) del panelFondo a null =  especificar manualmente la posición y el tamaño de cada componente utilizando el método setBounds().
         panelJuego = new JPanel(new GridLayout(2, 2)); // Crea un panel con un GridLayout de 2x2. GridLayout organiza los componentes en una cuadrícula de filas y columnas.
@@ -200,7 +201,7 @@ public class SeguirSecuencia extends JFrame implements ActionListener {
 
         @Override
         public boolean isBorderOpaque() {
-            return true; // Indica que el borde es opaco.
+            return false; // Indica que el borde es opaco.
         }
 
         @Override
