@@ -1,4 +1,5 @@
-import java.io.*;
+package zeroatmosphere;
+
 import java.util.Scanner;
 
 public class BobInterface {
@@ -13,6 +14,18 @@ public class BobInterface {
             "C:\\AA_pruebas\\cibercompresor.dat"
     };
     private static final Scanner scanner = new Scanner(System.in);
+    
+    public static String obtenerMemoriaParaMostrar() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n Matriz de objetos en memoria:\n");
+        for (int i = 0; i < FILAS; i++) {
+            sb.append("\nTipo: ").append(ARCHIVOS[i]).append("\n");
+            for (int j = 0; j < COLUMNAS; j++) {
+                sb.append("  [").append(i).append("][").append(j).append("] → ").append(memoria[i][j]).append("\n");
+            }
+        }
+        return sb.toString();
+    }
 
     public static void main(String[] args) {
         BlueStarIV.generarArchivosBinarios();
@@ -24,7 +37,7 @@ public class BobInterface {
 
         boolean salir = false;
         while (!salir) {
-            mostrarMemoria();
+            obtenerMemoriaParaMostrar();
             System.out.print("\n¿Deseas modificar algún objeto? (sí/no): ");
             String respuesta = scanner.next().toLowerCase();
             if (respuesta.equals("si") || respuesta.equals("sí")) {
@@ -36,16 +49,6 @@ public class BobInterface {
         BlueStarIV.actualizarArchivosBinarios(memoria, ARCHIVOS);
 
         System.out.println("Los cambios han sido guardados. ¡Hasta luego!");
-    }
-
-    private static void mostrarMemoria() {
-        System.out.println("\n Matriz de objetos en memoria:");
-        for (int i = 0; i < FILAS; i++) {
-            System.out.println("\nTipo: " + ARCHIVOS[i]);
-            for (int j = 0; j < COLUMNAS; j++) {
-                System.out.println("  [" + i + "][" + j + "] → " + memoria[i][j]);
-            }
-        }
     }
 
     private static void modificarObjeto() {
@@ -60,46 +63,44 @@ public class BobInterface {
         }
 
         Object obj = memoria[fila][columna];
-        
-        try{
-            // Permitir modificar atributos 2 al 4 según el tipo de objeto
-            if (obj instanceof CiberExcavadora) {
-                CiberExcavadora ce = (CiberExcavadora) obj;
-                System.out.print("Nuevo consumo (1-5 litros): ");
-                ce.setConsumo(scanner.nextInt());
-                System.out.print("Nueva tracción (ruedas/oruga): ");
-                ce.setTraccion(scanner.next());
-                System.out.print("Nueva protección (0.0 - 1.0): ");
-                ce.setProteccion(scanner.nextDouble());
-            } else if (obj instanceof Martillo) {
-                Martillo m = (Martillo) obj;
-                System.out.print("Nuevo consumo (200-300 Kw): ");
-                m.setConsumo(scanner.nextInt());
-                System.out.print("Nueva sujeción (manual/correa): ");
-                m.setSujeccion(scanner.next());
-                System.out.print("Nueva protección (0.0 - 1.0): ");
-                m.setProteccion(scanner.nextDouble());
-            } else if (obj instanceof Pala) {
-                Pala p = (Pala) obj;
-                System.out.print("Nuevo lonmango (1-5 metros): ");
-                p.setLonmango(scanner.nextInt());
-                System.out.print("Nuevo metal (puro/aleacion): ");
-                p.setMetal(scanner.next());
-                System.out.print("Nueva protección (PVC/vinilo): ");
-                p.setProteccion(scanner.next());
-            } else if (obj instanceof CiberCompresor) {
-                CiberCompresor cc = (CiberCompresor) obj;
-                System.out.print("Nuevo consumo (1-5 litros): ");
-                cc.setConsumo(scanner.nextInt());
-                System.out.print("Nueva tracción (ruedas/oruga): ");
-                cc.setTraccion(scanner.next());
-                System.out.print("Nueva protección (0.0 - 1.0): ");
-                cc.setProteccion(scanner.nextDouble());
-            } else {
-                System.out.println(" Tipo de objeto desconocido.");
-                return;
-            }
-            }catch (Excepciones e){System.err.println(e);}
+
+        // Permitir modificar atributos 2 al 4 según el tipo de objeto
+        if (obj instanceof CiberExcavadora) {
+            CiberExcavadora ce = (CiberExcavadora) obj;
+            System.out.print("Nuevo consumo (1-5 litros): ");
+            ce.setConsumo(scanner.nextInt());
+            System.out.print("Nueva tracción (ruedas/oruga): ");
+            ce.setTraccion(scanner.next());
+            System.out.print("Nueva protección (0.0 - 1.0): ");
+            ce.setProteccion(scanner.nextDouble());
+        } else if (obj instanceof Martillo) {
+            Martillo m = (Martillo) obj;
+            System.out.print("Nuevo consumo (200-300 Kw): ");
+            m.setConsumo(scanner.nextInt());
+            System.out.print("Nueva sujeción (manual/correa): ");
+            m.setSujecion(scanner.next());
+            System.out.print("Nueva protección (0.0 - 1.0): ");
+            m.setProteccion(scanner.nextDouble());
+        } else if (obj instanceof Pala) {
+            Pala p = (Pala) obj;
+            System.out.print("Nuevo lonmango (1-5 metros): ");
+            p.setLonmango(scanner.nextInt());
+            System.out.print("Nuevo metal (puro/aleacion): ");
+            p.setMetal(scanner.next());
+            System.out.print("Nueva protección (PVC/vinilo): ");
+            p.setProteccion(scanner.next());
+        } else if (obj instanceof CiberCompresor) {
+            CiberCompresor cc = (CiberCompresor) obj;
+            System.out.print("Nuevo consumo (1-5 litros): ");
+            cc.setConsumo(scanner.nextInt());
+            System.out.print("Nueva tracción (ruedas/oruga): ");
+            cc.setTraccion(scanner.next());
+            System.out.print("Nueva protección (0.0 - 1.0): ");
+            cc.setProteccion(scanner.nextDouble());
+        } else {
+            System.out.println(" Tipo de objeto desconocido.");
+            return;
+        }
 
         System.out.println(" Objeto actualizado.");
     }
