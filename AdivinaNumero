@@ -1,0 +1,158 @@
+package zeroatmosphere;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Random;
+
+public class AdivinaNumero extends JFrame implements ActionListener, MouseWheelListener {
+
+ 
+    private final JLabel etiquetaInstrucciones; // Etiqueta para mostrar instrucciones al usuario
+    private final JTextField campoNumero; // Campo de texto para que el usuario ingrese su número
+    private final JButton botonAdivinar; // Botón para que el usuario confirme su número
+    private final JLabel etiquetaResultado; // Etiqueta para mostrar el resultado del intento
+    
+    /*son tipos de datos. Indican que las variables son objetos de las siguientes clases de Swing:
+    JLabel: Se utiliza para mostrar texto o imágenes en la interfaz gráfica.
+    JTextField: Se utiliza para permitir al usuario ingresar texto.
+    JButton: Se utiliza para crear botones interactivos.*/
+
+    private int numeroAleatorio; // Número aleatorio que el usuario debe adivinar
+    private int intentos = 0; // Contador de intentos del usuario
+    private final int MAX_INTENTOS = 3; // Número máximo de intentos permitidos
+    private boolean juegoTerminado = false; // Indica si el juego ha terminado
+    public boolean juegoGanado = false; // Indica si el juego fue ganado
+
+    private BufferedImage fondoEstrellas; // clase que carga Imagen de fondo con estrellas
+    private int desplazamientoX = 0; // Desplazamiento horizontal para la animación del fondo
+    private final Timer timer; // Temporizador para la animación del fondo
+
+    public AdivinaNumero() {
+        setTitle("Adivina el Número"); // Título de la ventana. setTitle() es un método de la clase JFrame.
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Establece la operación de cierre de la ventana. setDefaultCloseOperation() método de la clase JFrame.
+
+        // Cargar la imagen de fondo
+        try {
+            fondoEstrellas = ImageIO.read(new File("/Users/fani/Desktop/estrellas2.jpg")); // Carga la imagen desde la ruta especificada
+        } catch (IOException e) {
+            e.printStackTrace(); // Imprime la traza de la excepción si ocurre un error al cargar la imagen
+        }
+
+        // Panel principal con fondo de estrellas y paralaje
+        JPanel panelPrincipal = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                if (fondoEstrellas != null) {
+                    // Dibuja la imagen de fondo con efecto de paralaje
+                    g.drawImage(fondoEstrellas, desplazamientoX, 0, getWidth() + desplazamientoX, getHeight(), 0, 0, fondoEstrellas.getWidth(), fondoEstrellas.getHeight(), this);
+                    g.drawImage(fondoEstrellas, desplazamientoX - getWidth(), 0, getWidth() + desplazamientoX - getWidth(), getHeight(), 0, 0, fondoEstrellas.getWidth(), fondoEstrellas.getHeight(), this);
+                }
+            }
+        };
+        panelPrincipal.setLayout(null); // Establece el layout del panel principal a null para posicionar los componentes manualmente
+        panelPrincipal.addMouseWheelListener(this); // Agrega un listener para el evento de la rueda del ratón
+
+        // Panel para los componentes del juego (centrado)
+        JPanel panelJuego = new JPanel(new GridBagLayout()); // Crea un panel para los componentes del juego con GridBagLayout
+        panelJuego.setOpaque(false); // Hace que el panel sea transparente
+
+        Font fuenteGrande = new Font("Arial", Font.BOLD, 24); // Crea una fuente grande para las etiquetas
+
+        etiquetaInstrucciones = new JLabel("Adivina un número entre 1 y 5:"); // Crea la etiqueta de instrucciones
+        etiquetaInstrucciones.setForeground(Color.WHITE); // Establece el color del texto a blanco
+        etiquetaInstrucciones.setFont(fuenteGrande); // Establece la fuente de la etiqueta
+
+        campoNumero = new JTextField(10); // Crea el campo de texto para que el usuario ingrese su número
+
+        botonAdivinar = new JButton("Adivinar"); // Crea el botón "Adivinar"
+
+        etiquetaResultado = new JLabel(""); // Crea la etiqueta para mostrar el resultado
+        etiquetaResultado.setForeground(Color.WHITE); // Establece el color del texto a blanco
+        etiquetaResultado.setFont(fuenteGrande); // Establece la fuente de la etiqueta
+
+        botonAdivinar.addActionListener(this); // Agrega un listener para el evento del botón
+
+        GridBagConstraints gbc = new GridBagConstraints(); // Crea un objeto GridBagConstraints para configurar la posición de los componentes
+        gbc.gridx = 0; // Establece la posición en la columna 0
+        gbc.gridy = 0; // Establece la posición en la fila 0
+        gbc.insets = new Insets(5, 5, 5, 5); // Establece los márgenes de los componentes
+        panelJuego.add(etiquetaInstrucciones, gbc); // Agrega la etiqueta de instrucciones al panel
+
+        gbc.gridy++; // Incrementa la posición en la fila
+        panelJuego.add(campoNumero, gbc); // Agrega el campo de texto al panel
+
+        gbc.gridy++; // Incrementa la posición en la fila
+        panelJuego.add(botonAdivinar, gbc); // Agrega el botón al panel
+
+        gbc.gridy++; // Incrementa la posición en la fila
+        panelJuego.add(etiquetaResultado, gbc); // Agrega la etiqueta de resultado al panel
+
+        // Centrar el panel del juego en el panel principal
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); // Obtiene el tamaño de la pantalla
+        int panelWidth = 500; // Establece el ancho del panel del juego
+        int panelHeight = 300; // Establece la altura del panel del juego
+        int x = (screenSize.width - panelWidth) / 2; // Calcula la posición x para centrar el panel
+        int y = (screenSize.height - panelHeight) / 2; // Calcula la posición y para centrar el panel
+        panelJuego.setBounds(x, y, panelWidth, panelHeight); // Establece la posición y el tamaño del panel del juego
+
+        panelPrincipal.add(panelJuego); // Agrega el panel del juego al panel principal
+
+        setContentPane(panelPrincipal); // Establece el panel principal como el contenido de la ventana
+        setSize(screenSize.width, screenSize.height); // Establece el tamaño de la ventana al tamaño de la pantalla
+        setLocationRelativeTo(null); // Centra la ventana en la pantalla
+        setVisible(true); // Hace que la ventana sea visible
+
+        generarNumeroAleatorio(); // Genera el número aleatorio
+
+        timer = new Timer(50, e -> { // Crea un temporizador para la animación del fondo
+            desplazamientoX += 1; // Incrementa el desplazamiento horizontal
+            panelPrincipal.repaint(); // Redibuja el panel principal
+        });
+        timer.start(); // Inicia el temporizador
+    }
+
+    private void generarNumeroAleatorio() {
+        Random random = new Random(); // Crea un objeto Random para generar números aleatorios
+        numeroAleatorio = random.nextInt(5) + 1; // Genera un número aleatorio entre 1 y 5
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
+            int numeroUsuario = Integer.parseInt(campoNumero.getText()); // Obtiene el número ingresado por el usuario
+            intentos++; // Incrementa el contador de intentos
+
+            if (numeroUsuario == numeroAleatorio) { // Si el número del usuario es igual al número aleatorio
+                etiquetaResultado.setText("¡Correcto! Adivinaste en " + intentos + " intentos."); // Muestra un mensaje de éxito
+                juegoGanado = true; // El jugador ganó
+                juegoTerminado = true; // El juego ha terminado
+            } else if (intentos >= MAX_INTENTOS) { // Si el usuario ha agotado los intentos
+                etiquetaResultado.setText("¡Perdiste! El número era " + numeroAleatorio); // Muestra un mensaje de derrota
+                juegoGanado = false; // El jugador perdió
+                juegoTerminado = true; // El juego ha terminado
+            } else if (numeroUsuario < numeroAleatorio) { // Si el número del usuario es menor que el número aleatorio
+                etiquetaResultado.setText("El número es mayor."); // Muestra una pista
+            } else { // Si el número del usuario es mayor que el número aleatorio
+                etiquetaResultado.setText("El número es menor."); // Muestra una pista
+            }
+        } catch (NumberFormatException ex) { // Si el usuario ingresa un valor no numérico
+            etiquetaResultado.setText("Ingresa un número válido."); // Muestra un mensaje de error
+        }
+
+        campoNumero.setText(""); // Limpia el campo de texto
+
+        if (juegoTerminado) {
+            dispose(); // Cierra la ventana si el juego ha terminado
+        }
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        desplazamientoX += e.getWheelRotation() * 10; // Ajusta el desplazamiento horizontal según el movimiento de la rueda del ratón
+    }
+}
