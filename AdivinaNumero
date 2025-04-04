@@ -155,4 +155,14 @@ public class AdivinaNumero extends JFrame implements ActionListener, MouseWheelL
     public void mouseWheelMoved(MouseWheelEvent e) {
         desplazamientoX += e.getWheelRotation() * 10; // Ajusta el desplazamiento horizontal según el movimiento de la rueda del ratón
     }
+
+public static void main(String[] args) {
+        // Prueba diferentes propiedades del sistema (descomenta la que quieras probar)
+        // System.setProperty("sun.java2d.opengl", "true");
+        // System.setProperty("sun.java2d.d3d", "true");
+        // System.setProperty("sun.java2d.noddraw", "true");
+        // System.setProperty("sun.java2d.pmoffscreen", "false");
+
+        SwingUtilities.invokeLater(AdivinaNumero::new);
+    }
 }
