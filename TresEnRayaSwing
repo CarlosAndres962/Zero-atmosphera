@@ -1,0 +1,229 @@
+package zeroatmosphere;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+
+public class TresEnRayaSwing extends JFrame implements ActionListener {
+
+    private final JButton[][] botones = new JButton[3][3]; // Matriz de botones para el tablero del juego
+    private final char[][] tablero = new char[3][3]; // Matriz de caracteres para representar el estado del tablero
+    
+    public char jugadorActual = 'X'; // Indica de quién es el turno ('X' o 'O')
+    public boolean juegoTerminado = false; // Indica si el juego ha terminado
+    public boolean juegoGanado = false; // Indica si el juego fue ganado
+
+    
+    public TresEnRayaSwing() {
+        setTitle("Tres en Raya"); // Título de la ventana. setTitle() es un método de la clase JFrame.
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Establece la operación de cierre de la ventana. setDefaultCloseOperation() método de la clase JFrame.
+        setLayout(new BorderLayout()); // Establece el administrador de diseño de la ventana. Ajusta el tamaño y la posición de los componentes en consecuencia.
+
+        inicializarTablero(); // Inicializa la matriz del tablero con '-' (casillas vacías)
+        inicializarBotones(); // Crea y configura los botones del tablero
+        agregarFondoEstático(); // Agrega un fondo a la ventana
+
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximiza la ventana
+        setVisible(true); // Hace la ventana visible
+    }
+
+    private void inicializarTablero() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                tablero[i][j] = '-'; // Inicializa cada celda del tablero como vacía
+            }
+        }
+    }
+
+    private void inicializarBotones() {
+        JPanel panelJuego = new JPanel(); // Crea un panel para los botones
+        panelJuego.setBackground(Color.BLACK); // Establece el fondo del panel a negro
+        panelJuego.setLayout(new GridLayout(3, 3)); // Establece el layout del panel a una cuadrícula de 3x3
+        panelJuego.setPreferredSize(new Dimension(450, 450)); // Establece el tamaño preferido del panel
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                botones[i][j] = new JButton(); // Crea un nuevo botón
+                botones[i][j].setFont(new Font(Font.SANS_SERIF, Font.BOLD, 80)); // Establece la fuente del botón
+                botones[i][j].setForeground(Color.BLUE); // Establece el color del texto del botón a azul
+                botones[i][j].setContentAreaFilled(false); // Hace que el área de contenido del botón sea transparente
+                botones[i][j].setBorderPainted(false); // Hace que el borde del botón sea invisible
+                botones[i][j].addActionListener(this); // Agrega un ActionListener para manejar los clics del botón
+                panelJuego.add(botones[i][j]); // Agrega el botón al panel
+            }
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (juegoTerminado) { // Si el juego ha terminado, no hacer nada
+            return;
+        }
+
+        JButton botonClicado = (JButton) e.getSource(); // Obtiene el botón que fue clicado
+        int fila = -1, columna = -1; // Inicializa las variables para la fila y columna
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (botones[i][j] == botonClicado) { // Encuentra la fila y columna del botón clicado
+                    fila = i;
+                    columna = j;
+                    break;
+                }
+            }
+        }
+
+        if (movimientoValido(fila, columna)) { // Si el movimiento es válido
+            tablero[fila][columna] = jugadorActual; // Actualiza el tablero con el movimiento del jugador
+            botones[fila][columna].setText(String.valueOf(jugadorActual)); // Actualiza el texto del botón
+
+            animarBoton(botones[fila][columna]); // anima el boton que fue presionado.
+
+            if (hayGanador()) { // Si hay un ganador
+                juegoTerminado = true;
+                juegoGanado = true;
+                dispose(); // Cierra la ventana
+            } else if (tableroLleno()) { // Si el tablero está lleno (empate)
+                juegoTerminado = true;
+                dispose(); // Cierra la ventana
+            } else if (tableroLleno()) {
+                JOptionPane.showMessageDialog(this, "¡Empate!"); // Muestra un mensaje de empate
+                juegoTerminado = true;
+            } else {
+                jugadorActual = (jugadorActual == 'X') ? 'O' : 'X'; // Cambia el turno del jugador
+                if (jugadorActual == 'O') {
+                    realizarMovimientoMaquina(); // Realiza el movimiento de la máquina
+                }
+            }
+
+        }
+    }
+
+    private void realizarMovimientoMaquina() {
+        if (juegoTerminado) {
+            return;
+        }
+
+        Timer timer = new Timer(3000, new ActionListener() { // Timer para simular el retraso de la maquina
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Random random = new Random(); // crea un random para generar numeros aletorios
+                int fila, columna;
+                do {
+                    fila = random.nextInt(3); // genera numero aletorio para la fila
+                    columna = random.nextInt(3); // genera numero aletorio para la columna
+                } while (!movimientoValido(fila, columna)); // repite hasta encontrar un movimiento valido
+
+                tablero[fila][columna] = jugadorActual; // Actualiza el tablero con el movimiento de la máquina
+                botones[fila][columna].setText(String.valueOf(jugadorActual)); // Actualiza el texto del botón
+
+                if (hayGanador()) { // Si hay un ganador
+                    juegoTerminado = true;
+                    juegoGanado = true;
+                    dispose(); // Cierra la ventana
+                } else if (tableroLleno()) { // Si el tablero está lleno (empate)
+                    juegoTerminado = true;
+                    dispose(); // Cierra la ventana
+                } else {
+                    jugadorActual = (jugadorActual == 'X') ? 'O' : 'X'; // Cambia el turno del jugador
+                }
+            }
+        });
+        timer.setRepeats(false); // El timer se ejecuta solo una vez
+        timer.start(); // Inicia el timer
+    }
+
+    private boolean movimientoValido(int fila, int columna) {
+        return fila >= 0 && fila < 3 && columna >= 0 && columna < 3 && tablero[fila][columna] == '-'; // Verifica si el movimiento es válido
+    }
+    /*
+    fila >= 0 && fila < 3: Verifica si la fila está dentro de los límites del tablero (0, 1 o 2).
+    columna >= 0 && columna < 3: Verifica si la columna está dentro de los límites del tablero (0, 1 o 2).
+    tablero[fila][columna] == '-': Verifica si la celda en la fila y columna especificadas está vacía (representada por el carácter '-').
+    */
+
+    public boolean hayGanador() {
+        for (int i = 0; i < 3; i++) {
+            if (tablero[i][0] == jugadorActual && tablero[i][1] == jugadorActual && tablero[i][2] == jugadorActual) {
+                return true; //Recorre cada fila del tablero y verifica si las tres celdas en la fila tienen el mismo carácter 
+            }
+        }
+
+        for (int j = 0; j < 3; j++) {
+            if (tablero[0][j] == jugadorActual && tablero[1][j] == jugadorActual && tablero[2][j] == jugadorActual) {
+                return true; //Recorre cada columna del tablero y verifica si las tres celdas en la columna tienen el mismo carácter
+            }
+        }
+
+        if (tablero[0][0] == jugadorActual && tablero[1][1] == jugadorActual && tablero[2][2] == jugadorActual) {
+            return true; // Verifica diagonal principal
+        }
+        if (tablero[0][2] == jugadorActual && tablero[1][1] == jugadorActual && tablero[2][0] == jugadorActual) {
+            return true; // Verifica diagonal secundaria
+        }
+
+        return false; // No hay ganador
+    }
+
+    private boolean tableroLleno() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (tablero[i][j] == '-') {
+                    return false; // Si hay una celda vacía, el tablero no está lleno
+                }
+            }
+        }
+        return true; // El tablero está lleno
+    }
+
+    public void agregarFondoEstático() {
+        JPanel panelPrincipal = new JPanel() { // Crea un panel para el fondo
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon imagenFondo = new ImageIcon("/Users/fani/Desktop/nave.jpg"); // Carga la imagen de fondo
+                g.drawImage(imagenFondo.getImage(), 0, 0, getWidth(), getHeight(), this); // Dibuja la imagen de fondo
+            }
+        };
+        panelPrincipal.setLayout(null); // Establece el layout del panel a null
+
+        JPanel panelJuego = new JPanel(); // Crea un panel para el tablero del juego
+        panelJuego.setBackground(new Color(0, 0, 0, 200)); // Establece el fondo del panel a negro semi-transparente
+        panelJuego.setLayout(new GridLayout(3, 3)); // Establece el layout del panel a una cuadrícula de 3x3
+        panelJuego.setPreferredSize(new Dimension(450, 450)); // Establece el tamaño preferido del panel
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                panelJuego.add(botones[i][j]); // Agrega los botones al panel del juego
+            }
+        }
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); // Obtiene el tamaño de la pantalla
+        Insets insets = getInsets(); // Obtiene los márgenes de la ventana
+        int x = (screenSize.width - 450) / 2; // Calcula la posición x para centrar el panel del juego
+        int y = (screenSize.height - 450 - insets.top) / 2; // Calcula la posición y para centrar el panel del juego
+        panelJuego.setBounds(x, y, 450, 450); // Establece la posición y el tamaño del panel del juego
+        panelPrincipal.add(panelJuego); // Agrega el panel del juego al panel principal
+
+        setContentPane(panelPrincipal); // Establece el panel principal como el contenido de la ventana
+    }
+
+    private void animarBoton(JButton boton) {
+        Color originalColor = boton.getForeground(); // Obtiene el color original del texto del botón
+        Color iluminadoColor = Color.YELLOW; // Establece el color iluminado a amarillo
+
+        boton.setForeground(iluminadoColor); // Cambia el color del texto del botón a amarillo
+        boton.setBorder(BorderFactory.createLineBorder(iluminadoColor, 3)); // Agrega un borde amarillo al botón
+
+        Timer timer = new Timer(100, new ActionListener() { // Crea un timer para revertir los cambios
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boton.setForeground(originalColor); // Revertir el color del texto a su valor original
+                boton.setBorder(null); // Quita el borde del botón
+                ((Timer) e.getSource()).stop(); // Detiene el timer
+            }
+        });
+        timer.setRepeats(false); // El timer se ejecuta solo una vez
+        timer.start(); // Inicia el timer
+    }
+}
