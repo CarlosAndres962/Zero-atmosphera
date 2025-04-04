@@ -56,7 +56,7 @@ public class Mineros extends Tripulacion {
                              this.getSexo(),
                              this.getCodigo(),
                              this.getEdad(),
-                             this.armamento());        
+                                  
     }
   
 }
