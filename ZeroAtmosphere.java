@@ -10,7 +10,6 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
-//1 ganando se cierra y perdiendo
 /**
  *
  * @author fani
@@ -31,8 +30,6 @@ public class ZeroAtmosphere {
     static Validador val=new Validador();
     
     
-    //FALTA ORDERNAR BIEN EL MENU INCLUIR FICHEROS Y OPCION 2 DEL MAIN 
-    
     public static void main(String[] args) {
    
         String op="";
@@ -43,7 +40,7 @@ public class ZeroAtmosphere {
                     System.out.println("2.Modificar tripulación o vehículos");
                     System.out.println("3.Iniciar nueva operación");
                     System.out.println("4.Finalizar operación");
-                    System.out.println("6.Ficheros");
+                    System.out.println("6.Acceso a ficheros binarios");
                     System.out.println("7.Desafíos con recompensas");
                     System.out.println("5.Salir");
                     op = sc.nextLine();
@@ -72,9 +69,8 @@ public class ZeroAtmosphere {
                     System.out.println("Saliendo del sistema...");
                     break;
                 case "6":
-                    System.out.println("Información de ficheros");
-                    creacionFicheros();
-                    lecturaFicheros();
+                    mostrarEstadoMemoriaBob();
+                    
                     break;
                 case "7":
                     menuJuegos();
@@ -462,144 +458,18 @@ public class ZeroAtmosphere {
     }
    }
 
-
-    public static void creacionFicheros() {
-        /*
-    try {
-            //CREAMOS OBJETOS DE CADA CLASE 
-            CiberExcavadora ciberexcavadora = new CiberExcavadora("CiberExcavadora-PZK", 4, "ruedas", 0.9);
-            Martillo martillo = new Martillo("Martillo Hidraulico", 230, "manual", 0.3);
-            Pala pala = new Pala("Pala de Excavacion", 3, "aleacion", "pvc");
-            CiberCompresor cibercompresor = new CiberCompresor("Compresor Industrial", 3, "ruedas", 0.6);
-
-            //crear los archivos binarios para cada maquina
-            
-            ObjectOutputStream oos1 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/mov_tierra.dat"));
-            oos1.writeObject(ciberexcavadora);
-            oos1.close();
-
-            ObjectOutputStream oos2 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/martillo.dat"));
-            oos2.writeObject(martillo);
-            oos2.close();
-
-            ObjectOutputStream oos3 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/manual_pala.dat"));
-            oos3.writeObject(pala);
-            oos3.close();
-
-            ObjectOutputStream oos4 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/cibercompresor.dat"));
-            oos4.writeObject(cibercompresor);
-            oos4.close();
-
-            System.out.println("Archivos binarios creados exitosamente.");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-*/  Random random = new Random();
-
-        try {
-            //CREAMOS OBJETOS DE CADA CLASE 
-
-            //crear los archivos binarios para cada maquina
-            ObjectOutputStream oos1 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/mov_tierra.dat"));
-            for (int i = 0; i < 10; i++) {
-                CiberExcavadora ciberexcavadora = new CiberExcavadora(
-                        "CiberExcavadora" + (i + 1),
-                        random.nextInt(5) + 1,
-                        random.nextBoolean() ? "ruedas" : "oruga",
-                        random.nextDouble()
-                );
-
-                oos1.writeObject(ciberexcavadora);
-            }
-            oos1.close();
-
-            ObjectOutputStream oos2 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/martillo.dat"));
-            for (int i = 0; i < 10; i++) {
-                Martillo martillo = new Martillo(
-                        "Martillo" + (i + 1),
-                        random.nextInt(101) + 200,
-                        random.nextBoolean() ? "manual" : "correa",
-                        random.nextDouble()
-                );
-
-                oos2.writeObject(martillo);
-            }
-            oos2.close();
-
-            ObjectOutputStream oos3 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/manual_pala.dat"));
-            for (int i = 0; i < 10; i++) {
-                Pala pala = new Pala(
-                        "CiberExcavadora" + (i + 1),
-                        random.nextInt(5) + 1,
-                        random.nextBoolean() ? "puro" : "aleacion",
-                        random.nextBoolean() ? "pvc" : "vinilo"
-                );
-
-                oos3.writeObject(pala);
-            }
-            oos1.close();
-
-            ObjectOutputStream oos4 = new ObjectOutputStream(new FileOutputStream("/Users/fani/Desktop/Binarios/cibercompresor.dat"));
-            for (int i = 0; i < 10; i++) {
-                CiberCompresor cibercompresor = new CiberCompresor(
-                        "CiberCompresor" + (i + 1),
-                        random.nextInt(5) + 1,
-                        random.nextBoolean() ? "ruedas" : "oruga",
-                        random.nextDouble()
-                );
-
-                oos4.writeObject(cibercompresor);
-            }
-            oos4.close();
-
-            System.out.println("Archivos binarios creados exitosamente.");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-
+    public static void mostrarEstadoMemoriaBob() {
     
+        BobInterface.main(new String[]{}); // Ejecuta el main de BobInterface para cargar la memoria
+
+        // Obtiene la representación en String de la memoria
+        String memoriaParaMostrar = BobInterface.obtenerMemoriaParaMostrar();
+
+        // Imprime la cadena en la consola
+        System.out.println("--- Estado de la Memoria desde MonitorMemoria ---");
+        System.out.println(memoriaParaMostrar);
     }
-    public static void lecturaFicheros(){
-        try {
-            // Leer los arichvos binarios deserializar los objetos
 
-            //Ciberexcavadora
-            ObjectInputStream ois1 = new ObjectInputStream(new FileInputStream("/Users/fani/Desktop/Binarios/mov_tierra.dat"));
-            CiberExcavadora ciberexcavadora = (CiberExcavadora) ois1.readObject();
-            ois1.close();
-            ciberexcavadora.toString();
-
-            //Martillo
-            ObjectInputStream ois2 = new ObjectInputStream(new FileInputStream("/Users/fani/Desktop/Binarios/martillo.dat"));
-            Martillo martillo = (Martillo) ois2.readObject();
-            ois2.close();
-            martillo.toString();
-            
-            //Pala
-            ObjectInputStream ois3 = new ObjectInputStream(new FileInputStream("/Users/fani/Desktop/Binarios/Manual_pala.dat"));
-            Pala pala = (Pala) ois3.readObject();
-            ois3.close();
-            pala.toString();
-            
-            //Cibercompresor
-            ObjectInputStream ois4 = new ObjectInputStream(new FileInputStream("/Users/fani/Desktop/Binarios/cibercompresor.dat"));
-            CiberCompresor cibercompresor = (CiberCompresor) ois4.readObject();
-            ois4.close();
-            cibercompresor.toString();
-            
-            System.out.println("Archivos binarios leidos y objetos restaurados correctamente.");
-
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            }
-    }
-    
-    
-    
     public static void iniciarAdivinaNumero() {
     AdivinaNumero adivinaNumero = new AdivinaNumero(); // Crea una nueva instancia del juego AdivinaNumero.
     adivinaNumero.setVisible(true); // Hace visible la ventana del juego.
@@ -664,5 +534,3 @@ public class ZeroAtmosphere {
     }
 }
 }
-  
-
