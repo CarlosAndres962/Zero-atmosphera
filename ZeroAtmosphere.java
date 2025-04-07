@@ -12,12 +12,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
-
-//1 ganando se cierra y perdiendo
-/**
- *
- * @author fani
- */
 public class ZeroAtmosphere {
     static Scanner sc = new Scanner(System.in);
     
