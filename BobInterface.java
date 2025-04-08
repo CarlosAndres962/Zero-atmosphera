@@ -1,7 +1,3 @@
-package zeroatmosphere;
-
-import java.util.Scanner;
-
 public class BobInterface {
 
     private static final int FILAS = 4;
