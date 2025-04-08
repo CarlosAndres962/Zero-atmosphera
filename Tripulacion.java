@@ -3,7 +3,7 @@ package beta;
 import java.util.Scanner;
 
 
-public abstract class tripulacion implements Armas {
+public abstract class tripulacion {
       //Atributos
     protected String nombre;
     protected char sexo;
