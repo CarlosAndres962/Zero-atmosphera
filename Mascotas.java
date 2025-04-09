@@ -8,24 +8,24 @@ package zeroatmosphere;
  *
  * @author sarag
  */
-public abstract class Mascotas extends Tripulacion implements AccionMas{
-    
+public abstract class Mascota extends Tripulacion {
+
     //Atributos
-    private Codigo codigo=new Codigo();
-    public Mascotas(String nombre, String sexo) {
+    private Codigo codigo = new Codigo();
+
+    public Mascota(String nombre, char sexo) {
         super(nombre, sexo);
     }
-     
+
     //Constructor
-    
     public abstract String Comunican();
-    
+
     public abstract String Duermen();
-    
+
     public abstract String Comen();
-    
+
     @Override
-    public String getCodigo(){
+    public String getCodigo() {
         return codigo.codMas();
     }
 
