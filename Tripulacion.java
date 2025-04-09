@@ -3,20 +3,30 @@ package beta;
 import java.util.Scanner;
 
 
-public abstract class tripulacion {
-      //Atributos
+public abstract class Tripulacion {
+
+    //Atributos
     protected String nombre;
     protected char sexo;
-    
+
     //Construtores
-    public tripulacion() {
-   
+    public Tripulacion() {
     }
 
-    public tripulacion(String nombre, char sexo) {
+    public Tripulacion(String nombre, char sexo) {
         this.nombre = nombre;
         this.sexo = sexo;
     }
+
+    public Tripulacion(String nombre, String codigo) {
+        this.nombre = nombre;
+    }
+
+    public Tripulacion(String nombre, char sexo, String codigo) {
+        this.nombre = nombre;
+        this.sexo = sexo;
+    }
+
     //Metodos
     public String getNombre() {
         return nombre;
@@ -32,10 +42,8 @@ public abstract class tripulacion {
 
     public void setSexo(char sexo) {
         this.sexo = sexo;
-    } 
+    }
+
     public abstract String getCodigo();
 
-   
-    
 }
-
